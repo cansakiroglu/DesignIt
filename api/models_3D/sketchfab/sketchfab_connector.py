@@ -22,6 +22,9 @@ class SketchFabConnector:
     
     #TODO: search_downloadable method (call search method and filter the results)
 
+    def parse_search_result(self,search_result,num_models=3):
+        return [(item['uid'],item['name']) for item in search_result['results'] if item['isDownloadable']==True][:num_models]
+
     
     def download(self, model_id, file_format='gltf'):
         response = requests.get(self.api_url + 'models/' + model_id + '/download', headers=self.headers)
@@ -30,7 +33,7 @@ class SketchFabConnector:
             response = requests.get(download_url)
             return response.content
         else:
-            print(response.json()["error"])
+            print(response.json())
             return None
     
     #TODO: unzip method

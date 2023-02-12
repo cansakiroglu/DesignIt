@@ -1,0 +1,4 @@
+chair
+table
+lamp
+bed

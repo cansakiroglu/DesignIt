@@ -1,0 +1,11 @@
+Model Information:
+* title:	Chair
+* source:	https://sketchfab.com/3d-models/chair-5aa086a9fea6468fae96b922bbd7a81b
+* author:	NINO (https://sketchfab.com/HANMI)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Chair" (https://sketchfab.com/3d-models/chair-5aa086a9fea6468fae96b922bbd7a81b) by NINO (https://sketchfab.com/HANMI) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
