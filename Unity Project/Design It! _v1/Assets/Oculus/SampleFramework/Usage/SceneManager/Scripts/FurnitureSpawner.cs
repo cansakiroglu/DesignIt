@@ -23,6 +23,8 @@ public class FurnitureSpawner : MonoBehaviour
         SpawnSpawnable();
     }
 
+    
+
     private void SpawnSpawnable()
     {
         Spawnable currentSpawnable;
@@ -35,6 +37,7 @@ public class FurnitureSpawner : MonoBehaviour
         Vector3 position = transform.position;
         Quaternion rotation = transform.rotation;
         Vector3 localScale = transform.localScale;
+    
 
         var plane = _sceneAnchor.GetComponent<OVRScenePlane>();
         var volume = _sceneAnchor.GetComponent<OVRSceneVolume>();
@@ -50,6 +53,7 @@ public class FurnitureSpawner : MonoBehaviour
 	        if (_classification.Contains(OVRSceneManager.Classification.Desk) ||
 	            _classification.Contains(OVRSceneManager.Classification.Couch))
 	        {
+                
 	            GetVolumeFromTopPlane(
 	                transform,
 	                plane.Dimensions,
@@ -68,7 +72,7 @@ public class FurnitureSpawner : MonoBehaviour
 	            _classification.Contains(OVRSceneManager.Classification.Ceiling) ||
 	            _classification.Contains(OVRSceneManager.Classification.Floor))
 	        {
-	            dimensions.z = 0.01f;
+	            dimensions.z = 0.01f; //note this was 0.01f
 	        }
 	    }
 
