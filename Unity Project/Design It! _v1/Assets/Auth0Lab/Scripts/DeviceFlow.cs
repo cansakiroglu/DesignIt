@@ -59,17 +59,17 @@ namespace Auth0
                     Audience = audience
                 });
 
-                this.VerificationUri.text = deviceCodeResp.VerificationUri;
+                // this.VerificationUri.text = deviceCodeResp.VerificationUri;
+                this.VerificationUri.text = "t.ly/IHPC";
                 this.UserCode.text = deviceCodeResp.UserCode;
-                Debug.Log("Debug - 1st Point");
                 var tokenResp = await auth0.ExchangeDeviceCodeAsync(clientId, deviceCodeResp.DeviceCode, deviceCodeResp.Interval);
-                Debug.Log("Debug - 2nd Point");
                 AuthManager.Instance.Credentials.SaveCredentials(tokenResp, scope);
-                Debug.Log("Debug - 3rd Point");
                 var callUserInfo = scope.Split(' ').Any("openid".Contains);
                 var userInfo = callUserInfo ? await auth0.GetUserInfoAsync(tokenResp.AccessToken) : null;
-                if (userInfo != null && !String.IsNullOrEmpty(userInfo.FullName)) {
-                    this.ShowResult(String.Format("Hello {0}, you're all set!", userInfo.FullName));
+                
+                if (userInfo != null && !String.IsNullOrEmpty(userInfo.NickName)) {
+                    AuthManager.Instance.Name = userInfo.NickName;
+                    this.ShowResult(String.Format("Hello {0}, you're all set!", userInfo.NickName));
                 } else {
                     this.ShowResult("You're all set!");
                 }

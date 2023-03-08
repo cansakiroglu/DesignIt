@@ -18,6 +18,9 @@ namespace Auth0
         /// </summary>
         public static AuthManager Instance => instance.Value;
 
+
+        public String Name;
+
         /// <summary>
         /// Your Auth0 configuration.
         /// </summary>
@@ -39,7 +42,7 @@ namespace Auth0
             // TODO: use your favorite strategy to load the following settings (ie, RemoteSettings)
             this.Settings = new Settings
             {
-                Domain = "dev-d2jub1k00ues5ilm.us.auth0.com", // "acme.auth0.com"
+                Domain = "dev-d2jub1k00ues5ilm.us.auth0.com", // "acme.auth0.com",
                 ClientId = "lZREs7gh5YCMkjEs7jxS6LaG7peHXXpG",
                 Scope = "openid profile offline_access",
                 Audience = ""
