@@ -61,10 +61,11 @@ namespace Auth0
 
                 this.VerificationUri.text = deviceCodeResp.VerificationUri;
                 this.UserCode.text = deviceCodeResp.UserCode;
-
+                Debug.Log("Debug - 1st Point");
                 var tokenResp = await auth0.ExchangeDeviceCodeAsync(clientId, deviceCodeResp.DeviceCode, deviceCodeResp.Interval);
+                Debug.Log("Debug - 2nd Point");
                 AuthManager.Instance.Credentials.SaveCredentials(tokenResp, scope);
-
+                Debug.Log("Debug - 3rd Point");
                 var callUserInfo = scope.Split(' ').Any("openid".Contains);
                 var userInfo = callUserInfo ? await auth0.GetUserInfoAsync(tokenResp.AccessToken) : null;
                 if (userInfo != null && !String.IsNullOrEmpty(userInfo.FullName)) {
