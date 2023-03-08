@@ -10,8 +10,8 @@ public class DebugDisplay : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("time:" + Time.time);
-        Debug.Log(gameObject.name);
+        // Debug.Log("time:" + Time.time);
+        // Debug.Log(gameObject.name);
     }
 
     private void OnEnable()
@@ -26,8 +26,8 @@ public class DebugDisplay : MonoBehaviour
 
     void HandleLog(string logString, string stackTrace, LogType type)
     {
-        if (!(logString.Contains("OVRSceneManager") || logString.Contains("OVRSceneModelLoader") || logString.Contains("MYTEST"))) //  || logString.Contains("locatable") || logString.Contains("Locatable")
-            return;
+        // if (!(logString.Contains("OVRSceneManager") || logString.Contains("OVRSceneModelLoader") || logString.Contains("MYTEST"))) //  || logString.Contains("locatable") || logString.Contains("Locatable")
+        //     return;
 
 
         // if (true)
