@@ -23,11 +23,13 @@ public class SignInMain : MonoBehaviour
         if (loggedIn)
         {
             FindObject(gameObject, "SignInBtn").SetActive(false);
+            FindObject(gameObject, "ContinueBtn").SetActive(true);
             FindObject(gameObject, "SignOutBtn").SetActive(true);
         }
         else
         {
             FindObject(gameObject, "SignInBtn").SetActive(true);
+            FindObject(gameObject, "ContinueBtn").SetActive(false);
             FindObject(gameObject, "SignOutBtn").SetActive(false);
         }
     }
