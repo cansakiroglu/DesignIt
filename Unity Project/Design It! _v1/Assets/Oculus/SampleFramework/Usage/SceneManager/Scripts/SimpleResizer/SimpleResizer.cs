@@ -26,17 +26,18 @@ public class SimpleResizer
         prefab.transform.localPosition = Vector3.zero;
         prefab.transform.localRotation = Quaternion.identity;
 
-        //add a box collider
-        // BoxCollider boxCollider = prefab.AddComponent<BoxCollider>();
-        // boxCollider.size = newSize;
-        // Debug.Log("Box collider size: " + boxCollider.size);
 
-        //add a mesh collider
-        MeshCollider meshCollider = prefab.AddComponent<MeshCollider>();
-        meshCollider.sharedMesh = resizedMesh;
-        meshCollider.convex = true;
-        meshCollider.isTrigger = true;
-        
+        // adding collider --- our addition
+        // MeshCollider meshCollider = prefab.AddComponent<MeshCollider>();
+        // meshCollider.sharedMesh = resizedMesh;
+        BoxCollider boxCollider = prefab.AddComponent<BoxCollider>();
+
+        Oculus.Interaction.Surfaces.ColliderSurface collidersurface = prefab.AddComponent<Oculus.Interaction.Surfaces.ColliderSurface>();
+        collidersurface.InjectCollider(boxCollider);
+        Oculus.Interaction.RayInteractable rayinteractable = prefab.AddComponent<Oculus.Interaction.RayInteractable>(); 
+        rayinteractable.InjectSurface(collidersurface);
+
+
 
 
         // cleanup

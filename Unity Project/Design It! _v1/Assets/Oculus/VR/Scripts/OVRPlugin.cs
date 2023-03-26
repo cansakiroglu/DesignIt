@@ -55,7 +55,7 @@ public static partial class OVRPlugin
 #if OVRPLUGIN_UNSUPPORTED_PLATFORM
 	public static readonly System.Version wrapperVersion = _versionZero;
 #else
-	public static readonly System.Version wrapperVersion = OVRP_1_81_0.version;
+	public static readonly System.Version wrapperVersion = OVRP_1_82_0.version;
 #endif
 
 #if !OVRPLUGIN_UNSUPPORTED_PLATFORM
@@ -7154,8 +7154,6 @@ public static partial class OVRPlugin
 	}
 
 
-// Virtual keyboard calls
-
 
 	/// <summary>
 	/// True if face tracking is enabled, otherwise false.
@@ -7734,6 +7732,7 @@ public static partial class OVRPlugin
 			{
 				Array.Resize(ref queryInfo.ComponentsInfo.Components, SpaceFilterInfoComponentsMaxSize);
 			}
+
 			Result result = OVRP_1_72_0.ovrp_QuerySpaces(ref queryInfo, out requestId);
 			return (result == Result.Success);
 		}
@@ -10037,6 +10036,12 @@ public static partial class OVRPlugin
 	private static class OVRP_1_81_0
 	{
 		public static readonly System.Version version = new System.Version(1, 81, 0);
+
+	}
+
+	private static class OVRP_1_82_0
+	{
+        public static readonly System.Version version = new System.Version(1, 82, 0);
 
 	}
 	/* INSERT NEW OVRP CLASS ABOVE THIS LINE */

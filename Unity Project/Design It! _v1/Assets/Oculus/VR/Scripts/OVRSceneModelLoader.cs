@@ -70,6 +70,7 @@ public class OVRSceneModelLoader : MonoBehaviour
         // Load the scene
         SceneManager.Verbose?.Log(nameof(OVRSceneModelLoader),
             $"{nameof(OnStart)}() calling {nameof(OVRSceneManager)}.{nameof(OVRSceneManager.LoadSceneModel)}()");
+
         if (!SceneManager.LoadSceneModel())
         {
 #if UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN || (UNITY_ANDROID && !UNITY_EDITOR)
@@ -101,7 +102,7 @@ public class OVRSceneModelLoader : MonoBehaviour
             "\n\n" +
             "If a scene model has already been captured, make sure the HMD is connected via Link and that is is donned.",
             "Ok");
-#else // BUG -- Not able to already done scene capture, ask for capture again if the "if" statement removed. 
+#else
         if (_sceneCaptureRequested)
         {
             SceneManager.Verbose?.Log(nameof(OVRSceneModelLoader),
@@ -124,11 +125,9 @@ public class OVRSceneModelLoader : MonoBehaviour
     protected virtual void OnSceneCaptureReturnedWithoutError()
     {
         // The capture flow successfully returned, we can now load the scene model
-        SceneManager.Verbose?.Log(nameof(OVRSceneModelLoader), "My Test -- 11");
         SceneManager.Verbose?.Log(nameof(OVRSceneModelLoader),
             $"{nameof(OnSceneCaptureReturnedWithoutError)}() calling {nameof(OVRSceneManager)}.{nameof(OVRSceneManager.LoadSceneModel)}()");
         SceneManager.LoadSceneModel();
-        SceneManager.Verbose?.Log(nameof(OVRSceneModelLoader), "My Test -- 12");
     }
 
     /// <summary>
