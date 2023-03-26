@@ -54,8 +54,17 @@ public class RaySpawn : MonoBehaviour
             Oculus.Interaction.CustomTranslateTransformer translateTransformer = new_obj.AddComponent<Oculus.Interaction.CustomTranslateTransformer>();
             Oculus.Interaction.Surfaces.ColliderSurface colliderSurface = new_obj.AddComponent<Oculus.Interaction.Surfaces.ColliderSurface>();
             Oculus.Interaction.RayInteractable rayInteractable = new_obj.AddComponent<Oculus.Interaction.RayInteractable>();
-            // Oculus.Interaction.InteractableUnityEventWrapper interactableUnityEventWrapper = new_obj.AddComponent<Oculus.Interaction.InteractableUnityEventWrapper>();
+            Oculus.Interaction.InteractableUnityEventWrapper interactableUnityEventWrapper = new_obj.AddComponent<Oculus.Interaction.InteractableUnityEventWrapper>();
             InformationHolder informationHolder = new_obj.AddComponent<InformationHolder>();
+            BoundingBoxHandler boundingBoxHandler = new_obj.AddComponent<BoundingBoxHandler>();
+
+            boundingBoxHandler.setSelectedObject(new_obj);
+
+            // interactableUnityEventWrapper.Start();
+            interactableUnityEventWrapper.InjectInteractableView(rayInteractable);
+            interactableUnityEventWrapper.WhenHover.AddListener(boundingBoxHandler.ShowBoundingBox);
+            interactableUnityEventWrapper.WhenUnhover.AddListener(boundingBoxHandler.HideBoundingBox);
+
 
             rigidbody.useGravity = false;
             rigidbody.isKinematic = true;
