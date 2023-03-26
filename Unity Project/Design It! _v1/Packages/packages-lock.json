@@ -1,9 +1,9 @@
 {
   "dependencies": {
     "com.atteneder.gltfast": {
-      "version": "file:C:/Users/Murat/Desktop/Unity Projects/_Packages/glTFast-main",
+      "version": "file:glTFast-main",
       "depth": 0,
-      "source": "local",
+      "source": "embedded",
       "dependencies": {
         "com.unity.modules.jsonserialize": "1.0.0",
         "com.unity.modules.unitywebrequest": "1.0.0",
@@ -176,9 +176,9 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.sketchfab": {
-      "version": "file:C:/Users/Murat/Desktop/Unity Projects/_Packages/SketchfabCSharp-main",
+      "version": "file:SketchfabCSharp-main",
       "depth": 0,
-      "source": "local",
+      "source": "embedded",
       "dependencies": {}
     },
     "com.unity.test-framework": {
