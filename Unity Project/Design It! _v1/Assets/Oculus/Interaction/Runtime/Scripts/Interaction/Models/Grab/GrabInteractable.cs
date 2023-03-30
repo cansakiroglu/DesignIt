@@ -89,6 +89,29 @@ namespace Oculus.Interaction
         }
         #endregion
 
+
+        // protected bool _initialized = false;
+        // protected override void OnEnable()
+        // {
+        //     print("STH ENTERED" + _initialized);
+        //     if (_initialized){
+        //         base.OnEnable();
+        //     }
+        // }
+
+        // protected override void OnDisable()
+        // {
+        //     if (_initialized){
+        //         base.OnDisable();
+        //     }
+        // }
+
+        // public void Initialize(){
+        //     _initialized = true;
+        //     print("TRUENOW");
+        //     OnEnable();
+        // }
+
         protected override void Awake()
         {
             base.Awake();

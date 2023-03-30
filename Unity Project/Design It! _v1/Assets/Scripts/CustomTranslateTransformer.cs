@@ -51,6 +51,8 @@ namespace Oculus.Interaction
         private Vector3 _grabOffsetInLocalSpace;
 
         private Int32 staticAxis;
+
+        private Vector3 deltaScaled;
         private IGrabbable _grabbable;
 
         public void Initialize(IGrabbable grabbable)
@@ -70,6 +72,9 @@ namespace Oculus.Interaction
 
         private void UpdateParentConstraints()
         {
+
+            _initialPosition = _grabbable.Transform.localPosition;
+
             if (staticAxis == 0){
                 _parentConstraints.MinX.Constrain = true;
                 _parentConstraints.MaxX.Constrain = true;
@@ -97,6 +102,9 @@ namespace Oculus.Interaction
             Transform targetTransform = _grabbable.Transform;
             _grabOffsetInLocalSpace = targetTransform.InverseTransformVector(
                     grabPoint.position - targetTransform.position);
+                    
+            Vector3 delta = new Vector3(0.01f, 0.01f, 0.01f);
+            deltaScaled = new Vector3(delta.x / targetTransform.parent.lossyScale.x, delta.y / targetTransform.parent.lossyScale.y, delta.z / targetTransform.parent.lossyScale.z);
         }
 
         public void UpdateTransform()
@@ -147,10 +155,9 @@ namespace Oculus.Interaction
             {
                 constrainedPosition = targetTransform.parent.TransformPoint(constrainedPosition);
             }
-            
 
-        
-            Collider[] colliders = Physics.OverlapBox(constrainedPosition, GetComponent<Collider>().bounds.size / 2f + new Vector3(0.002f, 0.002f, 0.002f), gameObject.transform.rotation);
+            // NOTE : there may be need to transform delta axis  
+            Collider[] colliders = Physics.OverlapBox(constrainedPosition, GetComponent<Collider>().bounds.size / 2f + deltaScaled, gameObject.transform.rotation);
             bool hasBase = false;
             foreach(Collider collider in colliders){
                 if(collider.gameObject == gameObject){
@@ -160,7 +167,9 @@ namespace Oculus.Interaction
                     hasBase = true;
                 } else if(collider.gameObject.transform.parent.Equals(gameObject.transform)){
                     //found child
-                } else {
+                } else if(collider.gameObject.ToString().Equals("ControllerGrabLocation (UnityEngine.GameObject)")){
+                    //found controller
+                } else{
                     return;
                 }
             }

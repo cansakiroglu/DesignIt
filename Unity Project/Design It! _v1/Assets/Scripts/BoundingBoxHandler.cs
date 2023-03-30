@@ -28,6 +28,15 @@ public class BoundingBoxHandler : MonoBehaviour
             this.boundingBox = boundingBox;
         }
     }
+
+    public void Update()
+    {
+        // TODO this is a placeholder delete function, it will be relocated properly
+
+        if (OVRInput.Get(OVRInput.Button.One)){
+            Destroy(gameObject);
+        }
+    }
     
 
     public void HideBoundingBox()
