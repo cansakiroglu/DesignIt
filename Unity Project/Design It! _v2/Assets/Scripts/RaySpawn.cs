@@ -32,6 +32,7 @@ public class RaySpawn : MonoBehaviour
 
         if (Physics.Raycast(rayOrigin.position, rayOrigin.forward, out hit, 100, ~IgnoreMe))
         {
+            return; // Adding this here temporarily to avoid the rest of the code
 
             bool enableCache = true;
             SketchfabAPI.AuthorizeWithAPIToken("0d0c5741ed93477986ae00986540961b");

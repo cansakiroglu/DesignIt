@@ -33,6 +33,13 @@ namespace Oculus.Interaction
         [SerializeField]
         private bool _clearStateOnDrag = false;
 
+        [SerializeField] public GameObject menuImage;// = GameObject.FindWithTag("menu_big_image");
+
+        [SerializeField] public bool already_downloaded = false;
+
+        [SerializeField] public string download_url = "";
+
+
         public bool ClearStateOnDrag
         {
             get
@@ -61,5 +68,27 @@ namespace Oculus.Interaction
                 ExecuteEvents.beginDragHandler
             );
         }
+
+        //overwrite the OnPointerClick function (debug.log("OnPointerClick"))
+        public override void OnPointerClick(PointerEventData eventData)
+        {
+            //find the object with tag 'menu_big_image'
+            menuImage = GameObject.FindWithTag("menu_big_image");
+            if (isOn){
+                Debug.Log("TOGGLE CLICKED turned on");
+                //set menuImage's image to the sprite of the toggle
+                Sprite sprite = gameObject.transform.GetChild(2).GetComponent<Image>().sprite;
+                
+
+                menuImage.GetComponent<Image>().sprite = sprite;
+            }
+            else
+                Debug.Log("TOGGLE CLICKED turned off");
+            
+            
+            base.OnPointerClick(eventData);
+        }
+
+
     }
 }
