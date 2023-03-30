@@ -1,0 +1,12 @@
+<linker>
+    <assembly fullname="Auth0.AuthenticationApi" preserve="all"/>
+    <assembly fullname="Auth0.Core" preserve="all"/>
+    <assembly fullname="Microsoft.IdentityModel.JsonWebTokens" preserve="all"/>
+    <assembly fullname="Microsoft.IdentityModel.Logging" preserve="all"/>
+    <assembly fullname="Microsoft.IdentityModel.Protocols" preserve="all"/>
+    <assembly fullname="Microsoft.IdentityModel.Protocols.OpenIdConnect" preserve="all"/>
+    <assembly fullname="Microsoft.IdentityModel.Tokens" preserve="all"/>
+    <assembly fullname="Newtonsoft.Json" preserve="all"/>
+    <assembly fullname="System.IdentityModel.Tokens.Jwt" preserve="all"/>
+    <assembly fullname="System.Security.Cryptography.Cng" preserve="all"/>
+</linker>
