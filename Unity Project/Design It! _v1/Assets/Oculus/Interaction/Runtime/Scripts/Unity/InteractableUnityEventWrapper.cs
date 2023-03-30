@@ -35,21 +35,21 @@ namespace Oculus.Interaction
         private IInteractableView InteractableView;
 
         [SerializeField]
-        private UnityEvent _whenHover;
+        private UnityEvent _whenHover = new UnityEvent();
         [SerializeField]
-        private UnityEvent _whenUnhover;
+        private UnityEvent _whenUnhover = new UnityEvent();
         [SerializeField]
-        private UnityEvent _whenSelect;
+        private UnityEvent _whenSelect = new UnityEvent();
         [SerializeField]
-        private UnityEvent _whenUnselect;
+        private UnityEvent _whenUnselect = new UnityEvent();
         [SerializeField]
-        private UnityEvent _whenInteractorViewAdded;
+        private UnityEvent _whenInteractorViewAdded = new UnityEvent();
         [SerializeField]
-        private UnityEvent _whenInteractorViewRemoved;
+        private UnityEvent _whenInteractorViewRemoved = new UnityEvent();
         [SerializeField]
-        private UnityEvent _whenSelectingInteractorViewAdded;
+        private UnityEvent _whenSelectingInteractorViewAdded = new UnityEvent();
         [SerializeField]
-        private UnityEvent _whenSelectingInteractorViewRemoved;
+        private UnityEvent _whenSelectingInteractorViewRemoved = new UnityEvent();
 
         #region Properties
 
