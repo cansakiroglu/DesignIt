@@ -32,22 +32,8 @@ public class RaySpawn : MonoBehaviour
 
         if (Physics.Raycast(rayOrigin.position, rayOrigin.forward, out hit, 100, ~IgnoreMe))
         {
-            Vector3 spawnPosition = hit.point;
-            Quaternion spawnRotation = Quaternion.identity;
 
-            spawnPosition = spawnPosition + Vector3.Scale(objectToSpawn.GetComponent<Renderer>().bounds.size, hit.normal) / 2;
-            spawnRotation = Quaternion.FromToRotation(transform.up, hit.normal) * spawnRotation;
-            Vector3 size = objectToSpawn.GetComponent<Renderer>().bounds.size;
-
-            if (Physics.OverlapBox(spawnPosition, size / 2f + new Vector3(0.002f, 0.002f, 0.002f)).Length != 1)
-            {
-                return;
-            }
-
-            GameObject hitObject = hit.transform.gameObject;
-
-            GameObject new_obj = Instantiate(objectToSpawn, spawnPosition, spawnRotation);
-            
+            GameObject new_obj = Instantiate(objectToSpawn, new Vector3(0, 0, 0), Quaternion.identity);
             new_obj.transform.SetParent(hit.transform, true);
 
             BoxCollider boxCollider = new_obj.AddComponent<BoxCollider>();
@@ -64,11 +50,9 @@ public class RaySpawn : MonoBehaviour
             BoundingBoxHandler boundingBoxHandler = new_obj.AddComponent<BoundingBoxHandler>();
 
             boundingBoxHandler.setSelectedObject(new_obj);
-            
-            // interactableUnityEventWrapper.Start();
+
             interactableUnityEventWrapper.InjectInteractableView(rayInteractable);
             interactableUnityEventWrapper.WhenHover.AddListener(boundingBoxHandler.ShowBoundingBox);
-
             interactableUnityEventWrapper.WhenUnhover.AddListener(boundingBoxHandler.HideBoundingBox);
 
 
@@ -88,21 +72,72 @@ public class RaySpawn : MonoBehaviour
             grabInteractable.InjectRigidbody(rigidbody);
             grabInteractable.InjectPointableElement(grabbable);
 
-            grabInteractable.Initialize();
-
-            // interactableUnityEventWrapper.InjectInteractableView(rayInteractable);
-
 
             Vector3 hitSurfaceNormal = hit.transform.InverseTransformDirection(hit.normal);
 
             if(Mathf.Abs(hitSurfaceNormal.x) > 0.5) {
-                new_obj.GetComponent<InformationHolder>().setStaticAxis(0);
+                informationHolder.setStaticAxis(0);
             } else if(Mathf.Abs(hitSurfaceNormal.y) > 0.5) {
-                new_obj.GetComponent<InformationHolder>().setStaticAxis(1);
+                informationHolder.setStaticAxis(1);
             } else {
-                new_obj.GetComponent<InformationHolder>().setStaticAxis(2);
+                informationHolder.setStaticAxis(2);
+            }
+
+            ColliderFitToChildren(new_obj);
+            informationHolder.setInitSize(boxCollider.bounds.size);
+
+            var bounds = boxCollider.bounds;
+            var x = bounds.size.x * new_obj.transform.lossyScale.x;
+            var y = bounds.size.y * new_obj.transform.lossyScale.y;
+            var z = bounds.size.z * new_obj.transform.lossyScale.z;
+
+            Vector3 spawnPosition = hit.point;
+            Quaternion spawnRotation = Quaternion.FromToRotation(transform.up, hit.normal) * Quaternion.identity;
+            new_obj.transform.position = spawnPosition + Vector3.Scale(new Vector3(x, y, z), hit.normal) / 2;
+            new_obj.transform.rotation = spawnRotation;
+        }
+      
+    }
+
+    private void ColliderFitToChildren(GameObject rootGameObject) {
+
+        bool hasBounds = false;
+        Bounds bounds = new Bounds(Vector3.zero, Vector3.zero);
+
+        bounds = ColliderFitToChildrenSub(bounds, rootGameObject, hasBounds);
+
+        BoxCollider collider = rootGameObject.GetComponent<BoxCollider>();
+        collider.center = bounds.center - rootGameObject.transform.position;
+        collider.size = bounds.size;
+
+    }
+
+    private Bounds ColliderFitToChildrenSub(Bounds bounds, GameObject child, bool hasBounds){
+        Renderer renderer = child.transform.GetComponent<Renderer>();
+        if (renderer != null) {
+            if (hasBounds) {
+                bounds.Encapsulate(renderer.bounds);
+            }
+            else {
+                bounds = renderer.bounds;
+                hasBounds = true;
             }
         }
+        for (int i = 0; i < child.transform.childCount; ++i) {
+            Renderer childRenderer = child.transform.GetChild(i).GetComponent<Renderer>();
+            if (childRenderer != null) {
+                if (hasBounds) {
+                    bounds.Encapsulate(childRenderer.bounds);
+                }
+                else {
+                    bounds = childRenderer.bounds;
+                    hasBounds = true;
+                }
+                ColliderFitToChildrenSub(bounds, child.transform.GetChild(i).gameObject, hasBounds);
+            }
+        }
+
+        return bounds;
     }
 
 }

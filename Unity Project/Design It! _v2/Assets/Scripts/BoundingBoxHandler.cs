@@ -12,8 +12,7 @@ public class BoundingBoxHandler : MonoBehaviour
         if (boundingBox != null) {
             boundingBox.SetActive(true);
         } else {
-            Renderer objectRenderer = selectedObject.GetComponent<Renderer>();
-            Bounds objectBounds = objectRenderer.bounds;
+            Bounds objectBounds = selectedObject.GetComponent<Collider>().bounds;
 
             // creating a new game object for the bounding box and setting its material
             GameObject boundingBox = Instantiate(Resources.Load("BoundingBox")) as GameObject;
@@ -21,7 +20,7 @@ public class BoundingBoxHandler : MonoBehaviour
             boundingBox.transform.rotation = selectedObject.transform.rotation;
 
             // using mesh bounds to get proper AABB
-            boundingBox.transform.localScale = selectedObject.GetComponent<MeshFilter>().mesh.bounds.size + new Vector3(0.002f, 0.002f, 0.002f);
+            boundingBox.transform.localScale = selectedObject.GetComponent<InformationHolder>().getInitSize() + new Vector3(0.002f, 0.002f, 0.002f);
 
             boundingBox.transform.SetParent(selectedObject.transform, true);
 
