@@ -133,8 +133,8 @@ public class RaySpawn : MonoBehaviour
                     bounds = childRenderer.bounds;
                     hasBounds = true;
                 }
-                bounds = ColliderFitToChildrenSub(bounds, child.transform.GetChild(i).gameObject, hasBounds);
             }
+            bounds = ColliderFitToChildrenSub(bounds, child.transform.GetChild(i).gameObject, hasBounds);
         }
 
         return bounds;
