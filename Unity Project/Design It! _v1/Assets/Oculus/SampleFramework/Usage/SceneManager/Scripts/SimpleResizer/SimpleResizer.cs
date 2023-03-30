@@ -37,6 +37,8 @@ public class SimpleResizer
         Oculus.Interaction.RayInteractable rayinteractable = prefab.AddComponent<Oculus.Interaction.RayInteractable>(); 
         rayinteractable.InjectSurface(collidersurface);
 
+        SpawnEnabler spawnEnabler = prefab.AddComponent<SpawnEnabler>();
+        spawnEnabler.rayInteractable = rayinteractable;
 
 
 
