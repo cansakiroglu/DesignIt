@@ -7,6 +7,8 @@ public class InformationHolder : MonoBehaviour
 
     private int staticAxis;
 
+    private Vector3 initSize;
+
     public void setStaticAxis(int axis){
         staticAxis = axis;
     }
@@ -27,4 +29,13 @@ public class InformationHolder : MonoBehaviour
 
         return toReturn;
     }
+
+    public void setInitSize(Vector3 size){
+        initSize = size;
+    }
+
+    public Vector3 getInitSize(){
+        return initSize;
+    }
+
 }
