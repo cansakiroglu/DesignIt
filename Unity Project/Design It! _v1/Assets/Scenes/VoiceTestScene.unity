@@ -123,7 +123,20 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+<<<<<<< HEAD
 --- !u!1 &11107538
+=======
+<<<<<<< HEAD:Unity Project/Design It! _v1/Assets/Scenes/FirstScene.unity
+--- !u!1 &194223287 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100002, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
+  m_PrefabInstance: {fileID: 463945349}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &269180388
+=======
+--- !u!1 &11107538
+>>>>>>> main:Unity Project/Design It! _v1/Assets/Scenes/VoiceTestScene.unity
+>>>>>>> main
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -181,7 +194,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+<<<<<<< HEAD
   m_text: Object Detection API Test
+=======
+  m_text: Speech Recognition Output
+>>>>>>> main
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -537,7 +554,12 @@ RectTransform:
   - {fileID: 272316388}
   - {fileID: 11107539}
   - {fileID: 1410541591}
+<<<<<<< HEAD
   - {fileID: 679146103}
+=======
+  - {fileID: 2092325732}
+  - {fileID: 1374265650}
+>>>>>>> main
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -606,6 +628,13 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2037080, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
+<<<<<<< HEAD
+=======
+      propertyPath: near clip plane
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037080, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
+>>>>>>> main
       propertyPath: m_BackGroundColor.a
       value: 0
       objectReference: {fileID: 0}
@@ -636,17 +665,136 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 2037080, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
   m_PrefabInstance: {fileID: 561527084}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD:Unity Project/Design It! _v1/Assets/Scenes/FirstScene.unity
+--- !u!114 &463945351
+=======
+>>>>>>> main
 --- !u!1 &561527086 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100004, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
   m_PrefabInstance: {fileID: 561527084}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &561527087
+<<<<<<< HEAD
+=======
+>>>>>>> main:Unity Project/Design It! _v1/Assets/Scenes/VoiceTestScene.unity
+>>>>>>> main
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD:Unity Project/Design It! _v1/Assets/Scenes/FirstScene.unity
+  m_GameObject: {fileID: 194223287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2fadf230d1919748a9aa21d40f74619, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackingType: 0
+  m_UpdateType: 0
+  m_IgnoreTrackingState: 0
+  m_PositionInput:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Position
+      m_Type: 0
+      m_ExpectedControlType: Vector3
+      m_Id: 
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings:
+      - m_Name: 
+        m_Id: 
+        m_Path: <XRHMD>/centerEyePosition
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Position
+        m_Flags: 0
+      - m_Name: 
+        m_Id: 602837ee-8967-45fe-87ca-7a9e5be3cfef
+        m_Path: <HandheldARInputDevice>/devicePosition
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Position
+        m_Flags: 0
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  m_RotationInput:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Rotation
+      m_Type: 0
+      m_ExpectedControlType: Quaternion
+      m_Id: 
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings:
+      - m_Name: 
+        m_Id: 
+        m_Path: <XRHMD>/centerEyeRotation
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Rotation
+        m_Flags: 0
+      - m_Name: 
+        m_Id: fb720ee1-4960-4203-af8b-c80cee4fa813
+        m_Path: <HandheldARInputDevice>/deviceRotation
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Rotation
+        m_Flags: 0
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  m_TrackingStateInput:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Tracking State
+      m_Type: 0
+      m_ExpectedControlType: Integer
+      m_Id: 
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  m_CurrentPosition: {x: 0, y: 0, z: 0}
+  m_CurrentRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_CurrentTrackingState: 3
+  m_RotationBound: 0
+  m_PositionBound: 0
+  m_TrackingStateBound: 0
+  m_IsFirstUpdate: 1
+  m_PositionAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  m_RotationAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  m_HasMigratedActions: 1
+--- !u!1 &567193443
+=======
+>>>>>>> main
   m_GameObject: {fileID: 561527086}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -700,6 +848,10 @@ MonoBehaviour:
   edgeColor_: {r: 1, g: 1, b: 1, a: 1}
   colorMapType: 0
 --- !u!1 &607061128
+<<<<<<< HEAD
+=======
+>>>>>>> main:Unity Project/Design It! _v1/Assets/Scenes/VoiceTestScene.unity
+>>>>>>> main
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -707,22 +859,148 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD:Unity Project/Design It! _v1/Assets/Scenes/FirstScene.unity
+  - component: {fileID: 567193448}
+  - component: {fileID: 567193447}
+  - component: {fileID: 567193446}
+  - component: {fileID: 567193445}
+  - component: {fileID: 567193444}
+  m_Layer: 0
+  m_Name: XR Origin
+=======
+>>>>>>> main
   - component: {fileID: 607061130}
   - component: {fileID: 607061129}
   - component: {fileID: 607061131}
   m_Layer: 0
   m_Name: App Voice Experience
+<<<<<<< HEAD
+=======
+>>>>>>> main:Unity Project/Design It! _v1/Assets/Scenes/VoiceTestScene.unity
+>>>>>>> main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
+<<<<<<< HEAD
   m_IsActive: 0
 --- !u!114 &607061129
+=======
+  m_IsActive: 1
+<<<<<<< HEAD:Unity Project/Design It! _v1/Assets/Scenes/FirstScene.unity
+--- !u!114 &567193444
+=======
+--- !u!114 &607061129
+>>>>>>> main:Unity Project/Design It! _v1/Assets/Scenes/VoiceTestScene.unity
+>>>>>>> main
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD:Unity Project/Design It! _v1/Assets/Scenes/FirstScene.unity
+  m_GameObject: {fileID: 567193443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01f69dc1cb084aa42b2f2f8cd87bc770, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_System: {fileID: 567193445}
+  <locomotionPhase>k__BackingField: 0
+  <validRequest>k__BackingField: 0
+  m_DelayTime: 0
+  m_HasExclusiveLocomotion: 0
+  m_TimeStarted: -1
+--- !u!114 &567193445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 567193443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03a5df2202a8b96488c744be3bd0c33e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CurrentExclusiveProvider: {fileID: 0}
+  m_TimeMadeExclusive: 0
+  m_Timeout: 10
+  m_XROrigin: {fileID: 567193447}
+--- !u!114 &567193446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 567193443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2213c36610e3b1c4bbf886810ed9db12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_System: {fileID: 567193445}
+  <locomotionPhase>k__BackingField: 0
+  m_TurnAmount: 45
+  m_DebounceTime: 0.5
+  m_EnableTurnLeftRight: 1
+  m_EnableTurnAround: 1
+  m_DelayTime: 0
+  m_CurrentTurnAmount: 0
+  m_TimeStarted: 0
+  m_DelayStartTime: 0
+  m_LeftHandSnapTurnAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Left Hand Snap Turn
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: c6866a2d-c3ee-42dc-936c-7320b166f271
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  m_RightHandSnapTurnAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Right Hand Snap Turn
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 3310f4bf-9cd7-4ce0-a27d-a084f82beaca
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+--- !u!114 &567193447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 567193443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0cb9aa70a22847b5925ee5f067c10a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Camera: {fileID: 463945350}
+  <TrackablesParent>k__BackingField: {fileID: 0}
+  m_OriginBaseGameObject: {fileID: 567193443}
+  m_CameraFloorOffsetObject: {fileID: 1206056360}
+  m_RequestedTrackingOriginMode: 0
+  m_CameraYOffset: 1.1176
+  <CurrentTrackingOriginMode>k__BackingField: 0
+  m_CameraInitialized: 0
+  m_CameraInitializing: 0
+--- !u!4 &567193448
+=======
+>>>>>>> main
   m_GameObject: {fileID: 607061128}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -826,16 +1104,39 @@ MonoBehaviour:
   usePlatformServices: 0
   enableConsoleLogging: 1
 --- !u!4 &607061130
+<<<<<<< HEAD
+=======
+>>>>>>> main:Unity Project/Design It! _v1/Assets/Scenes/VoiceTestScene.unity
+>>>>>>> main
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 607061128}
+=======
+<<<<<<< HEAD:Unity Project/Design It! _v1/Assets/Scenes/FirstScene.unity
+  m_GameObject: {fileID: 567193443}
+=======
+  m_GameObject: {fileID: 607061128}
+>>>>>>> main:Unity Project/Design It! _v1/Assets/Scenes/VoiceTestScene.unity
+>>>>>>> main
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD:Unity Project/Design It! _v1/Assets/Scenes/FirstScene.unity
+  m_Children:
+  - {fileID: 1206056361}
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &904211855
+=======
+>>>>>>> main
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -852,6 +1153,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e3442249f2d87141a7688125ed0407e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+=======
+  freshStateText: Try pressing the Activate button and saying "I want a table lamp."
+  SRTextArea: {fileID: 1410541589}
+  SRShowJson: 0
+  NLPTextArea: {fileID: 1374265651}
+  NLPShowJson: 0
+  appVoiceExperience: {fileID: 607061129}
+>>>>>>> main
 --- !u!1 &671014491
 GameObject:
   m_ObjectHideFlags: 0
@@ -946,7 +1256,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+<<<<<<< HEAD
 --- !u!1 &679146102
+=======
+--- !u!1 &1374265649
+>>>>>>> main
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -954,6 +1268,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< HEAD
   - component: {fileID: 679146103}
   - component: {fileID: 679146106}
   - component: {fileID: 679146105}
@@ -961,22 +1276,38 @@ GameObject:
   - component: {fileID: 679146107}
   m_Layer: 5
   m_Name: Button (Legacy)
+=======
+  - component: {fileID: 1374265650}
+  - component: {fileID: 1374265652}
+  - component: {fileID: 1374265651}
+  m_Layer: 5
+  m_Name: NLP_Result
+>>>>>>> main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< HEAD
 --- !u!224 &679146103
+=======
+--- !u!224 &1374265650
+>>>>>>> main
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 679146102}
+=======
+  m_GameObject: {fileID: 1374265649}
+>>>>>>> main
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
+<<<<<<< HEAD
   m_Children:
   - {fileID: 1082242894}
   m_Father: {fileID: 278876154}
@@ -1133,12 +1464,28 @@ RectTransform:
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1082242895
+=======
+  m_Children: []
+  m_Father: {fileID: 278876154}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -4, y: -270}
+  m_SizeDelta: {x: 573.3, y: 353}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1374265651
+>>>>>>> main
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 1082242893}
+=======
+  m_GameObject: {fileID: 1374265649}
+>>>>>>> main
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
@@ -1153,6 +1500,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
+<<<<<<< HEAD
     m_Font: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
     m_FontSize: 55
     m_FontStyle: 0
@@ -1160,19 +1508,37 @@ MonoBehaviour:
     m_MinSize: 4
     m_MaxSize: 55
     m_Alignment: 4
+=======
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 52
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 3
+    m_MaxSize: 52
+    m_Alignment: 0
+>>>>>>> main
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
+<<<<<<< HEAD
   m_Text: SEND REQUEST
 --- !u!222 &1082242896
+=======
+  m_Text: '-'
+--- !u!222 &1374265652
+>>>>>>> main
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 1082242893}
+=======
+  m_GameObject: {fileID: 1374265649}
+>>>>>>> main
   m_CullTransparentMesh: 1
 --- !u!1 &1410541588
 GameObject:
@@ -1255,6 +1621,10 @@ RectTransform:
   m_SizeDelta: {x: 577.3, y: 296.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1950642423
+<<<<<<< HEAD
+=======
+>>>>>>> main:Unity Project/Design It! _v1/Assets/Scenes/VoiceTestScene.unity
+>>>>>>> main
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1344,3 +1714,176 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1038146256242982, guid: a9d2de84afb308a4796cc671d3432b4d, type: 3}
   m_PrefabInstance: {fileID: 1950642423}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD:Unity Project/Design It! _v1/Assets/Scenes/FirstScene.unity
+--- !u!1 &1206056360
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1206056361}
+  m_Layer: 0
+  m_Name: Camera Offset
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1206056361
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1206056360}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 567193448}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1333584782
+=======
+--- !u!1 &2092325731
+>>>>>>> main:Unity Project/Design It! _v1/Assets/Scenes/VoiceTestScene.unity
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2092325732}
+  - component: {fileID: 2092325734}
+  - component: {fileID: 2092325733}
+  m_Layer: 5
+  m_Name: NLP-title
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2092325732
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092325731}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 278876154}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 1.4, y: -53.4}
+  m_SizeDelta: {x: 654.7, y: 80.2}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2092325733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092325731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: NLP Result Output
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 52
+  m_fontSizeBase: 52
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &2092325734
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092325731}
+  m_CullTransparentMesh: 1
+>>>>>>> main
