@@ -9,6 +9,7 @@ TagManager:
   - menu_big_image
   - menu_download_button
   - menu_content
+  - main_rig
   layers:
   - Default
   - TransparentFX

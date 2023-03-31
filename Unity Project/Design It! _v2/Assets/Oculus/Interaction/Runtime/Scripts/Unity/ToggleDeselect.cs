@@ -37,6 +37,9 @@ namespace Oculus.Interaction
         [SerializeField] public GameObject menuImage;// = GameObject.FindWithTag("menu_big_image");
 
         [SerializeField] public GameObject menuDownloadButton;// = GameObject.FindWithTag("menu_download_button");
+
+
+        [SerializeField] public GameObject correspondingAmmo;
         
         
         
@@ -92,8 +95,12 @@ namespace Oculus.Interaction
                 //set menuImage's image to the sprite of the toggle
                 Sprite sprite = gameObject.transform.GetChild(2).GetComponent<Image>().sprite;
                 
-
                 menuImage.GetComponent<Image>().sprite = sprite;
+
+                if (already_downloaded){
+                    Debug.Log("Already downloaded");
+                    Debug.Log("correspondingAmmo: "+correspondingAmmo);
+                }
 
                 
             }

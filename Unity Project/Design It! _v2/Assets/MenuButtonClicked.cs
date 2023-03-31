@@ -13,6 +13,7 @@ public class MenuButtonClicked : MonoBehaviour
     
     public Oculus.Interaction.ToggleDeselect[] toggles;
     
+    public GameObject ovr_rig;
     
     
     // Start is called before the first frame update
@@ -20,7 +21,7 @@ public class MenuButtonClicked : MonoBehaviour
     {
         //add onClick function to the button
         // GetComponent<UnityEngine.UI.Button>().onClick.AddListener(CustomOnClick);
-        
+        ovr_rig = GameObject.FindWithTag("main_rig");
 
         if (gameObject.name == "DownloadButton"){
             GetComponent<UnityEngine.UI.Button>().onClick.AddListener(DownloadOnClick);
@@ -41,7 +42,7 @@ public class MenuButtonClicked : MonoBehaviour
                 Debug.Log("Toggle is on");
                 model_uid_to_download = toggle.model_uid;
                 Debug.Log("model_uid_to_download: "+model_uid_to_download);
-                DownloadModel(model_uid_to_download);
+                DownloadModel(model_uid_to_download,toggle);
                 toggle.already_downloaded = true;
 
 
@@ -60,7 +61,7 @@ public class MenuButtonClicked : MonoBehaviour
 
 
 
-    void DownloadModel(string _uid){
+    void DownloadModel(string _uid, Oculus.Interaction.ToggleDeselect toggle){
           // This first call will get the model information
             bool enableCache = true;
             SketchfabAPI.AuthorizeWithAPIToken("0d0c5741ed93477986ae00986540961b");
@@ -72,7 +73,8 @@ public class MenuButtonClicked : MonoBehaviour
                 {
                     if(obj != null)
                     {
-                        
+                        toggle.correspondingAmmo= obj;
+                        obj.SetActive(false);
 
 
                         // Here you can do anything you like to obj (A unity game object containing the sketchfab model)
@@ -103,14 +105,15 @@ public class MenuButtonClicked : MonoBehaviour
             
             if (gameObject.name == "DownloadButton"){
                 if (toggle.isOn && toggle.already_downloaded){
-                Debug.Log("Toggle is on and already downloaded");
+                // Debug.Log("Toggle is on and already downloaded");
                 
                 GetComponent<UnityEngine.UI.Button>().interactable = false;
                 GetComponent<UnityEngine.UI.Text>().text = "Downloaded";
                 GetComponent<UnityEngine.UI.Text>().color = Color.green;
+                ovr_rig.GetComponent<RaySpawn>().objectToSpawn = toggle.correspondingAmmo;
                 break;
             }else if (toggle.isOn && !toggle.already_downloaded){
-                Debug.Log("Toggle is on and not downloaded");
+                // Debug.Log("Toggle is on and not downloaded");
                 GetComponent<UnityEngine.UI.Button>().interactable = true;
                 GetComponent<UnityEngine.UI.Text>().text = "Download";
                 GetComponent<UnityEngine.UI.Text>().color = Color.white;
@@ -122,7 +125,7 @@ public class MenuButtonClicked : MonoBehaviour
 
             if (gameObject.name=="SetActiveButton"){
                 if (toggle.isOn){
-                    Debug.Log("Toggle is on");
+                    // Debug.Log("Toggle is on");
                     GetComponent<UnityEngine.UI.Button>().interactable = true;
                     GetComponent<UnityEngine.UI.Text>().text = "Set Active";
                     GetComponent<UnityEngine.UI.Text>().color = Color.white;
@@ -133,7 +136,7 @@ public class MenuButtonClicked : MonoBehaviour
                     GetComponent<UnityEngine.UI.Text>().color = Color.white;
                     break;
                 }
-            }
+            } //Probs going to delete this part
               
                 
                 
