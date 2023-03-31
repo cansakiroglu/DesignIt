@@ -7,6 +7,8 @@ TagManager:
   - RoomLight
   - SamplesInfoPanel
   - menu_big_image
+  - menu_download_button
+  - menu_content
   layers:
   - Default
   - TransparentFX

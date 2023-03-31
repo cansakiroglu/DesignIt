@@ -7,25 +7,37 @@ public class ManageToggles : MonoBehaviour
 {
     // Start is called before the first frame update
     public int numToggles=10;
+    public string searchKeyword = "chair";
     void Start()
     {
-        //get the ToggleGroup component of this object
-        UnityEngine.UI.ToggleGroup toggleGroup = GetComponent<UnityEngine.UI.ToggleGroup>();
-        //instantiate the toggles
-        for(int i=0; i<numToggles; i++){
-            Debug.Log("Instantiating toggle");
-            GameObject newToggle = Instantiate(Resources.Load("Toggle")) as GameObject;
-            newToggle.transform.SetParent(transform, false);
-            newToggle.transform.localPosition = new Vector3(0, 0, 0);
-            newToggle.transform.localScale = new Vector3(1, 1, 1);
-            //set the toggle group
-            newToggle.GetComponent<UnityEngine.UI.Toggle>().group = toggleGroup;
-            //assign random color
-            newToggle.transform.GetChild(2).GetComponent<UnityEngine.UI.Image>().color = new Color(Random.value, Random.value, Random.value, 1.0f);
-        }
-        downloadSketchfabThumbnails();
+        // //get the ToggleGroup component of this object
+        // UnityEngine.UI.ToggleGroup toggleGroup = GetComponent<UnityEngine.UI.ToggleGroup>();
+        // //instantiate the toggles
+        // for(int i=0; i<numToggles; i++){
+        //     Debug.Log("Instantiating toggle");
+        //     GameObject newToggle = Instantiate(Resources.Load("Toggle")) as GameObject;
+        //     newToggle.transform.SetParent(transform, false);
+        //     newToggle.transform.localPosition = new Vector3(0, 0, 0);
+        //     newToggle.transform.localScale = new Vector3(1, 1, 1);
+        //     //set the toggle group
+        //     newToggle.GetComponent<UnityEngine.UI.Toggle>().group = toggleGroup;
+        //     //assign random color
+        //     newToggle.transform.GetChild(2).GetComponent<UnityEngine.UI.Image>().color = new Color(Random.value, Random.value, Random.value, 1.0f);
+        // }
+
+        //sleep for 5 seconds
+        StartCoroutine(Sleeper());
+
+        downloadSketchfabThumbnails(searchKeyword);
         
     }
+
+    IEnumerator Sleeper(){
+        Debug.Log("Sleeping for 5 seconds");
+        yield return new WaitForSeconds(5);
+        Debug.Log("Awake");
+    }
+
 
 //     void downloadSketchfabThumbnails(){
 //         bool enableCache = true;
@@ -78,13 +90,14 @@ public class ManageToggles : MonoBehaviour
 //     }
 // }
 
-void downloadSketchfabThumbnails(){
+void downloadSketchfabThumbnails(string searchKeyword){
     bool enableCache = true;
     SketchfabAPI.AuthorizeWithAPIToken("0d0c5741ed93477986ae00986540961b");
     UnityWebRequestSketchfabModelList.Parameters p = new UnityWebRequestSketchfabModelList.Parameters();
     p.downloadable = true;
 
-    string searchKeyword = "chair";
+    // string searchKeyword = "chair";
+
     List<SketchfabModel> m_ModelList = new List<SketchfabModel>();
     List<Texture2D> m_ThumbnailTextures = new List<Texture2D>(); // New list to hold downloaded thumbnail textures
 
@@ -101,7 +114,10 @@ void downloadSketchfabThumbnails(){
                 StartCoroutine(DownloadThumbnailImage(thumbnailUrl, (Texture2D texture) =>
                     {
                         m_ThumbnailTextures.Add(texture); // Add downloaded texture to list
-                        create_toggle_with_texture(texture); // Create a toggle with the downloaded texture
+
+                        //get the uid to download the model
+                        string uid = model.Uid;
+                        create_toggle_with_texture(texture,uid); // Create a toggle with the downloaded texture
                     }));
             }
         // Debug.Log("m_ThumbnailTextures.Count: " + m_ThumbnailTextures.Count);
@@ -125,7 +141,7 @@ IEnumerator DownloadThumbnailImage(string url, System.Action<Texture2D> callback
     }
 }
 
-void create_toggle_with_texture(Texture2D texture){
+void create_toggle_with_texture(Texture2D texture, string model_uid){
             
     UnityEngine.UI.ToggleGroup toggleGroup = GetComponent<UnityEngine.UI.ToggleGroup>();
     GameObject newToggle = Instantiate(Resources.Load("Toggle")) as GameObject;
@@ -134,6 +150,11 @@ void create_toggle_with_texture(Texture2D texture){
     newToggle.transform.localScale = new Vector3(1, 1, 1);
     //set the toggle group
     newToggle.GetComponent<UnityEngine.UI.Toggle>().group = toggleGroup;
+    
+    //get the ToggleDeselect script and set the model uid
+    newToggle.GetComponent<Oculus.Interaction.ToggleDeselect>().model_uid = model_uid;
+
+    //set the
 
     //assign the texture to the toggle
     newToggle.transform.GetChild(2).GetComponent<UnityEngine.UI.Image>().sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f), 100f);

@@ -22,6 +22,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+
 namespace Oculus.Interaction
 {
     /// <summary>
@@ -35,9 +36,15 @@ namespace Oculus.Interaction
 
         [SerializeField] public GameObject menuImage;// = GameObject.FindWithTag("menu_big_image");
 
+        [SerializeField] public GameObject menuDownloadButton;// = GameObject.FindWithTag("menu_download_button");
+        
+        
+        
+
+
         [SerializeField] public bool already_downloaded = false;
 
-        [SerializeField] public string download_url = "";
+        [SerializeField] public string model_uid="";
 
 
         public bool ClearStateOnDrag
@@ -74,13 +81,21 @@ namespace Oculus.Interaction
         {
             //find the object with tag 'menu_big_image'
             menuImage = GameObject.FindWithTag("menu_big_image");
+
+            menuDownloadButton=GameObject.FindWithTag("menu_download_button");
+
             if (isOn){
                 Debug.Log("TOGGLE CLICKED turned on");
+
+                Debug.Log("Current toggle's model_uid: " + model_uid);
+
                 //set menuImage's image to the sprite of the toggle
                 Sprite sprite = gameObject.transform.GetChild(2).GetComponent<Image>().sprite;
                 
 
                 menuImage.GetComponent<Image>().sprite = sprite;
+
+                
             }
             else
                 Debug.Log("TOGGLE CLICKED turned off");
@@ -91,4 +106,6 @@ namespace Oculus.Interaction
 
 
     }
+
+
 }
