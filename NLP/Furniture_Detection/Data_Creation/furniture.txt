@@ -1,3 +1,38 @@
+Desk
+Sofa
+Telephone
+Television
+Speaker
+End table
+Tea set
+Fireplace
+Remote
+Fan
+Floor lamp
+Carpet
+Table
+Blinds
+Curtains
+Picture
+Vase
+vanity mirror
+Grandfather clock
+Writing desk
+Bedside table
+Card table
+Conference table
+Computer desk
+Work table
+End table
+Dining room table
+Dressing table
+Patio table
+Bar table
+Picnic table
+tennis table
+Bin
+Trash
+Trash box
 Baby bottle
 Bassinet
 Bib
@@ -19,7 +54,6 @@ Stroller
 Pram
 Teddy bear
 Block
-Sofa
 Park bench
 Upholstered bench
 Armchair
@@ -68,8 +102,6 @@ Desk lamp
 Mirror
 Curtains
 Ironing board
-Television
-Telephone
 Hope chest
 Picture
 Nightstand
@@ -77,37 +109,3 @@ Wing chair
 TV stand
 Sofa
 Cushion
-Telephone
-Television
-Speaker
-End table
-Tea set
-Fireplace
-Remote
-Fan
-Floor lamp
-Carpet
-Table
-Blinds
-Curtains
-Picture
-Vase
-vanity mirror
-Grandfather clock
-Writing desk
-Bedside table
-Card table
-Conference table
-Computer desk
-Work table
-Desk
-End table
-Dining room table
-Dressing table
-Patio table
-Bar table
-Picnic table
-tennis table
-Bin
-Trash
-Trash box
