@@ -1,0 +1,12 @@
+broad
+chubby
+crooked
+round
+low
+square
+wide
+triangle
+sleek
+tall
+small
+hexagonal

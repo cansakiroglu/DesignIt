@@ -1,0 +1,7 @@
+glass
+leather
+wooden
+marble
+metal
+wicker
+linen

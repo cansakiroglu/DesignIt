@@ -1,0 +1,30 @@
+storage container
+television
+sound system
+computer
+bed
+glasses
+glass
+billiard table
+blankets
+blanket
+linens
+linen
+umbrellas
+umbrella
+book
+books
+novels
+novel
+chairs
+mirror
+shelves
+cushions
+desk
+cabin
+chaise
+recliner
+seat
+tray
+tablet
+pillow
