@@ -13,6 +13,12 @@ public class RaySpawn : MonoBehaviour
 
     public bool is_menu_open = false;
 
+    GameObject inventory_menu;
+
+    void Start(){
+        inventory_menu = GameObject.FindWithTag("menu_canvas");
+    }
+
     void Update()
     {
         if (OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) > 0.5f && !isCasting){
@@ -25,11 +31,12 @@ public class RaySpawn : MonoBehaviour
             isCasting = false;
         }
 
-        //check if the B button is pressed
-        if (OVRInput.Get(OVRInput.Button.One))
+        //check if the X button is pressed
+        if (OVRInput.GetDown(OVRInput.Button.Two))
         {
-            Debug.Log("B button pressed");
-            is_menu_open = true;
+            Debug.Log("X button pressed");
+            is_menu_open = !is_menu_open;
+            inventory_menu.SetActive(is_menu_open);
         }
     }
 
