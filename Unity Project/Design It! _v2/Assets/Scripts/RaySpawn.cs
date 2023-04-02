@@ -6,10 +6,18 @@ using System;
 public class RaySpawn : MonoBehaviour
 {
     [SerializeField] private Transform rayOrigin;
-    [SerializeField] private GameObject objectToSpawn;
+    [SerializeField] public GameObject objectToSpawn;
 
     [SerializeField] private LayerMask IgnoreMe;
     private bool isCasting=false;
+
+    public bool is_menu_open = false;
+
+    GameObject inventory_menu;
+
+    void Start(){
+        inventory_menu = GameObject.FindWithTag("menu_canvas");
+    }
 
     void Update()
     {
@@ -22,6 +30,14 @@ public class RaySpawn : MonoBehaviour
         {
             isCasting = false;
         }
+
+        //check if the X button is pressed
+        if (OVRInput.GetDown(OVRInput.Button.Two))
+        {
+            Debug.Log("X button pressed");
+            is_menu_open = !is_menu_open;
+            inventory_menu.SetActive(is_menu_open);
+        }
     }
 
     void Cast()
@@ -29,11 +45,30 @@ public class RaySpawn : MonoBehaviour
         isCasting = true;
         RaycastHit hit;
 
+        if(is_menu_open){
+            return;
+        }
+
 
         if (Physics.Raycast(rayOrigin.position, rayOrigin.forward, out hit, 100, ~IgnoreMe))
         {
+            // return; // Adding this here temporarily to avoid the rest of the code
 
+            bool enableCache = true;
+
+            // SketchfabAPI.AuthorizeWithAPIToken("0d0c5741ed93477986ae00986540961b");
+            // SketchfabAPI.GetModel("acd1cef307b94803846d624b251a4e63", (resp) =>
+            // {
+            //     // This second call will get the model information, download it and instantiate it
+            //     SketchfabModelImporter.Import(resp.Object, (new_obj) =>
+            //     {
+            //         if(new_obj != null)
+            //         {
+            //             // Here you can do anything you like to obj (A unity game object containing the sketchfab model)
+
+            Debug.Log("Object to spawn: "+objectToSpawn.name);
             GameObject new_obj = Instantiate(objectToSpawn, new Vector3(0, 0, 0), Quaternion.identity);
+            new_obj.SetActive(true);
             new_obj.transform.SetParent(hit.transform, true);
 
             BoxCollider boxCollider = new_obj.AddComponent<BoxCollider>();
@@ -86,6 +121,8 @@ public class RaySpawn : MonoBehaviour
             ColliderFitToChildren(new_obj);
             informationHolder.setInitSize(boxCollider.bounds.size);
 
+            print(boxCollider.bounds);
+
             var bounds = boxCollider.bounds;
             var x = bounds.size.x * new_obj.transform.lossyScale.x;
             var y = bounds.size.y * new_obj.transform.lossyScale.y;
@@ -95,6 +132,11 @@ public class RaySpawn : MonoBehaviour
             Quaternion spawnRotation = Quaternion.FromToRotation(transform.up, hit.normal) * Quaternion.identity;
             new_obj.transform.position = spawnPosition + Vector3.Scale(new Vector3(x, y, z), hit.normal) / 2;
             new_obj.transform.rotation = spawnRotation;
+
+            
+            //         }
+            //     }, enableCache);
+            // }, enableCache);
         }
       
     }
@@ -139,5 +181,10 @@ public class RaySpawn : MonoBehaviour
 
         return bounds;
     }
+
+
+
+
+
 
 }

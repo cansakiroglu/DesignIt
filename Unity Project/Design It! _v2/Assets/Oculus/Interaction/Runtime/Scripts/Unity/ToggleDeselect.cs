@@ -22,6 +22,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+
 namespace Oculus.Interaction
 {
     /// <summary>
@@ -32,6 +33,22 @@ namespace Oculus.Interaction
     {
         [SerializeField]
         private bool _clearStateOnDrag = false;
+
+        [SerializeField] public GameObject menuImage;// = GameObject.FindWithTag("menu_big_image");
+
+        [SerializeField] public GameObject menuDownloadButton;// = GameObject.FindWithTag("menu_download_button");
+
+
+        [SerializeField] public GameObject correspondingAmmo;
+        
+        
+        
+
+
+        [SerializeField] public bool already_downloaded = false;
+
+        [SerializeField] public string model_uid="";
+
 
         public bool ClearStateOnDrag
         {
@@ -61,5 +78,41 @@ namespace Oculus.Interaction
                 ExecuteEvents.beginDragHandler
             );
         }
+
+        //overwrite the OnPointerClick function (debug.log("OnPointerClick"))
+        public override void OnPointerClick(PointerEventData eventData)
+        {
+            //find the object with tag 'menu_big_image'
+            menuImage = GameObject.FindWithTag("menu_big_image");
+
+            menuDownloadButton=GameObject.FindWithTag("menu_download_button");
+
+            if (isOn){
+                Debug.Log("TOGGLE CLICKED turned on");
+
+                Debug.Log("Current toggle's model_uid: " + model_uid);
+
+                //set menuImage's image to the sprite of the toggle
+                Sprite sprite = gameObject.transform.GetChild(2).GetComponent<Image>().sprite;
+                
+                menuImage.GetComponent<Image>().sprite = sprite;
+
+                if (already_downloaded){
+                    Debug.Log("Already downloaded");
+                    Debug.Log("correspondingAmmo: "+correspondingAmmo);
+                }
+
+                
+            }
+            else
+                Debug.Log("TOGGLE CLICKED turned off");
+            
+            
+            base.OnPointerClick(eventData);
+        }
+
+
     }
+
+
 }

@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - RoomLight
+  - SamplesInfoPanel
+  - menu_big_image
+  - menu_download_button
+  - menu_content
+  - main_rig
+  - menu_canvas
   layers:
   - Default
   - TransparentFX
