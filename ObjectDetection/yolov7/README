@@ -1,0 +1,29 @@
+Purpose:
+    Predicts the class of the given image
+
+Classes:
+    chair (56)
+    couch (57)
+    potted plant (58)
+    bed (59)
+    dining table (60)
+    toilet (61)
+    tv (62)
+    laptop (63)
+    microwave (68)
+    oven (69)
+    sink (71)
+    refrigerator (72)
+    clock (74)
+    vase (75)
+
+Usage:
+    Firstly, go into the directory yolov7. (cd yolov7)
+    Then, download the model weights. (wget https://github.com/WongKinYiu/yolov7/releases/download/v0.1/yolov7.pt)   (Not uploaded to the GitHub due to size issues.)
+    Lastly, to run detection with a specified image: 
+    	python query.py with the specified image to run detection on.
+
+Notes:
+    Used yolov7 (https://github.com/WongKinYiu/yolov7) repository as the base,
+    Modified detect.py for our case,
+    Added query.py for retrieving the resulting class.
