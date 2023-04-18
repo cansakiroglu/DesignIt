@@ -32,12 +32,12 @@ public class RaySpawn : MonoBehaviour
         }
 
         //check if the X button is pressed
-        if (OVRInput.GetDown(OVRInput.Button.Two))
-        {
-            Debug.Log("X button pressed");
-            is_menu_open = !is_menu_open;
-            inventory_menu.SetActive(is_menu_open);
-        }
+        // if (OVRInput.GetDown(OVRInput.Button.Two))
+        // {
+        //     Debug.Log("X button pressed");
+        //     is_menu_open = !is_menu_open;
+        //     inventory_menu.SetActive(is_menu_open);
+        // }
     }
 
     void Cast()

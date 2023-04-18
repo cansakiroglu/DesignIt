@@ -11,6 +11,7 @@ public class DetectionAPITest : MonoBehaviour
         textArea.text = "Sending Request";
 
         StartCoroutine(GetRequest("http://192.168.137.1:5000"));
+
     }
 
     IEnumerator GetRequest(string uri)

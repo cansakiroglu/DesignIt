@@ -793,7 +793,7 @@ public class OVRPassthroughLayer : MonoBehaviour
     private OVRCameraRig cameraRig;
     private bool cameraRigInitialized = false;
     private GameObject auxGameObject;
-    private OVROverlay passthroughOverlay;
+    public OVROverlay passthroughOverlay;
 
     // Each GameObjects requires a MrTriangleMesh and a MrPassthroughGeometryInstance handle.
     // The structure also keeps a flag for whether transform updates should be tracked.
