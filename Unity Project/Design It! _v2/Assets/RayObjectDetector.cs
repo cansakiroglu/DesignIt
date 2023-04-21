@@ -14,6 +14,7 @@ public class RayObjectDetector : MonoBehaviour
 
     [SerializeField] private Oculus.Voice.AppVoiceExperience appVoiceExperience;
 
+    [SerializeField] private GameObject overlayCanvas;
     [SerializeField] private TMPro.TMP_Text text;
     bool isXPressed = false;
     bool isYPressed = false;
@@ -24,16 +25,70 @@ public class RayObjectDetector : MonoBehaviour
 
     private GameObject hit_gameobject; 
 
+        // Add delegates
     private void OnEnable()
     {
         appVoiceExperience.VoiceEvents.OnFullTranscription.AddListener(OnRequestFullTranscript);
+        appVoiceExperience.VoiceEvents.OnResponse.AddListener(OnRequestResponse);
+        appVoiceExperience.VoiceEvents.OnError.AddListener(OnRequestError);
+    }
+    // Remove delegates
+    private void OnDisable()
+    {
+        appVoiceExperience.VoiceEvents.OnFullTranscription.RemoveListener(OnRequestFullTranscript);
+        appVoiceExperience.VoiceEvents.OnResponse.RemoveListener(OnRequestResponse);
+        appVoiceExperience.VoiceEvents.OnError.RemoveListener(OnRequestError);
     }
 
+
     private void OnRequestFullTranscript(string transcript){
-        hit_gameobject.transform.name = transcript.ToLower();
-        Debug.Log("Gameobject with ID : " + hit_gameobject.GetInstanceID() + " set to " + hit_gameobject.transform.name);
-        text.SetText(transcript.ToLower());
-        isXPressed = false;
+        if (isXPressed){
+            hit_gameobject.transform.name = transcript.ToLower();
+            Debug.Log("Gameobject with ID : " + hit_gameobject.GetInstanceID() + " set to " + hit_gameobject.transform.name);
+            text.SetText(transcript.ToLower());
+            StartCoroutine(ShowOverlay(3));
+            isXPressed = false;
+        }
+    }
+
+    private void OnRequestResponse(Meta.WitAi.Json.WitResponseNode response)
+    {
+        SetActivation(false);
+    }
+    // Request error
+    private void OnRequestError(string error, string message)
+    {
+        SetActivation(false);
+    }
+    // Deactivate
+    private void OnRequestComplete()
+    {
+        SetActivation(false);
+    }
+
+    // Set activation
+    public void SetActivation(bool toActivated)
+    {
+        if (toActivated)
+        {
+            if(!appVoiceExperience.Active){
+                appVoiceExperience.Activate();
+            }
+        }
+        else
+        {
+            appVoiceExperience.Deactivate();
+        }
+    }
+
+
+    IEnumerator ShowOverlay(float seconds)
+    {
+        overlayCanvas.SetActive(true);
+
+        yield return new WaitForSeconds(seconds);
+
+        overlayCanvas.SetActive(false);
     }
 
 
@@ -46,7 +101,7 @@ public class RayObjectDetector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (OVRInput.Get(OVRInput.Button.Three) && !isXPressed){
+        if (OVRInput.GetDown(OVRInput.Button.Three) && !isXPressed){
 
             isXPressed = true;
 
@@ -63,7 +118,7 @@ public class RayObjectDetector : MonoBehaviour
         }
 
         if (isXPressed && waitFrame == 0){
-            appVoiceExperience.Activate();
+            SetActivation(true);
             text.SetText("Listening");
         }
 
@@ -83,7 +138,7 @@ public class RayObjectDetector : MonoBehaviour
             hit_gameobject.transform.parent.parent.gameObject.name = webRequest.downloadHandler.text;
 
             text.SetText(webRequest.downloadHandler.text);
-
+            StartCoroutine(ShowOverlay(3));
             // pop op result
 
             passthroughLayer.hidden = true;
@@ -91,7 +146,7 @@ public class RayObjectDetector : MonoBehaviour
             captureStarted = false;
         }
 
-        if (OVRInput.Get(OVRInput.Button.Four) && !isYPressed){
+        if (OVRInput.GetDown(OVRInput.Button.Four) && !isYPressed){
             
             isYPressed = true;
 
@@ -124,4 +179,6 @@ public class RayObjectDetector : MonoBehaviour
             print("\n\nGot response : " + webRequest.downloadHandler.text);
         }
     }
+
+
 }

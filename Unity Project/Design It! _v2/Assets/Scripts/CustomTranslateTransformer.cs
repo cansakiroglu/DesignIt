@@ -104,7 +104,7 @@ namespace Oculus.Interaction
                     grabPoint.position - targetTransform.position);
                     
             Vector3 delta = new Vector3(0.01f, 0.01f, 0.01f);
-            deltaScaled = new Vector3(delta.x / targetTransform.parent.lossyScale.x, delta.y / targetTransform.parent.lossyScale.y, delta.z / targetTransform.parent.lossyScale.z);
+            deltaScaled = new Vector3(delta.x / targetTransform.lossyScale.x, delta.y / targetTransform.lossyScale.y, delta.z / targetTransform.lossyScale.z);
         }
 
         public void UpdateTransform()
@@ -156,8 +156,14 @@ namespace Oculus.Interaction
                 constrainedPosition = targetTransform.parent.TransformPoint(constrainedPosition);
             }
 
+            Vector3 old_pos = targetTransform.position;
+
+            targetTransform.position = constrainedPosition;
+            
             // NOTE : there may be need to transform delta axis  
-            Collider[] colliders = Physics.OverlapBox(constrainedPosition, GetComponent<Collider>().bounds.size / 2f + deltaScaled, gameObject.transform.rotation);
+            // Collider[] colliders = Physics.OverlapBox(constrainedPosition, GetComponent<Collider>().bounds.size / 2f + deltaScaled, gameObject.transform.rotation);
+            GameObject boundingBox = targetTransform.GetComponent<BoundingBoxHandler>().getBoundingBox();
+            Collider[] colliders = Physics.OverlapBox(boundingBox.transform.position, boundingBox.transform.lossyScale / 2f + deltaScaled, boundingBox.transform.rotation);
             bool hasBase = false;
             foreach(Collider collider in colliders){
                 if(collider.gameObject == gameObject){
@@ -170,14 +176,14 @@ namespace Oculus.Interaction
                 } else if(collider.gameObject.ToString().Equals("ControllerGrabLocation (UnityEngine.GameObject)")){
                     //found controller
                 } else{
+                    targetTransform.position = old_pos;
                     return;
                 }
             }
             if (!hasBase){
+                targetTransform.position = old_pos;
                 return;
             }
-
-            targetTransform.position = constrainedPosition;
         }
 
         public void EndTransform() { }

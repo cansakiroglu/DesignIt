@@ -7,23 +7,26 @@ public class RaySpawn : MonoBehaviour
 {
     [SerializeField] private Transform rayOrigin;
     [SerializeField] public GameObject objectToSpawn;
-
     [SerializeField] private LayerMask IgnoreMe;
+    [SerializeField] private GameObject inventory_menu;
+    
+    [SerializeField] private ManageToggles toggle_manager;
+
+    [SerializeField] private SketchfabVoiceController voiceController;
+
     private bool isCasting=false;
-
-    public bool is_menu_open = false;
-
-    GameObject inventory_menu;
-
-    void Start(){
-        inventory_menu = GameObject.FindWithTag("menu_canvas");
-    }
+    private bool is_menu_open=false;
 
     void Update()
     {
+        is_menu_open = inventory_menu.activeSelf;
+
         if (OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) > 0.5f && !isCasting){
             Debug.Log("Right Trigger Pressed");
-            Cast();
+            print(objectToSpawn);
+            if(objectToSpawn != null){
+                Cast();
+            }
         }
 
         if (OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) < 0.5f && isCasting)
@@ -31,16 +34,27 @@ public class RaySpawn : MonoBehaviour
             isCasting = false;
         }
 
-        //check if the X button is pressed
-        // if (OVRInput.GetDown(OVRInput.Button.Two))
-        // {
-        //     Debug.Log("X button pressed");
-        //     is_menu_open = !is_menu_open;
-        //     inventory_menu.SetActive(is_menu_open);
-        // }
+
+        if (OVRInput.GetDown(OVRInput.Button.One)) // A button
+        {
+            if (!inventory_menu.activeSelf){
+                if (!voiceController.appVoiceExperience.Active)
+                    voiceController.SetActivation(true);
+            }
+            else{
+                inventory_menu.SetActive(false);
+            }
+
+        }
     }
 
-    void Cast()
+    public void OpenMenu(string object_name)
+    {
+        toggle_manager.downloadSketchfabThumbnails(object_name);
+        inventory_menu.SetActive(true);
+    }
+
+    private void Cast()
     {
         isCasting = true;
         RaycastHit hit;
@@ -52,7 +66,6 @@ public class RaySpawn : MonoBehaviour
 
         if (Physics.Raycast(rayOrigin.position, rayOrigin.forward, out hit, 100, ~IgnoreMe))
         {
-            // return; // Adding this here temporarily to avoid the rest of the code
 
             bool enableCache = true;
 
@@ -67,7 +80,10 @@ public class RaySpawn : MonoBehaviour
             //             // Here you can do anything you like to obj (A unity game object containing the sketchfab model)
 
             Debug.Log("Object to spawn: "+objectToSpawn.name);
-            GameObject new_obj = Instantiate(objectToSpawn, new Vector3(0, 0, 0), Quaternion.identity);
+            // GameObject new_obj = Instantiate(objectToSpawn, new Vector3(0, 0, 0), Quaternion.identity);
+            GameObject new_obj = Instantiate(objectToSpawn, hit.point, Quaternion.identity);
+            // new_obj.transform.rotation = Quaternion.FromToRotation(transform.up, hit.normal) * Quaternion.identity;
+            
             new_obj.SetActive(true);
             new_obj.transform.SetParent(hit.transform, true);
 
@@ -119,24 +135,62 @@ public class RaySpawn : MonoBehaviour
             }
 
             ColliderFitToChildren(new_obj);
-            informationHolder.setInitSize(boxCollider.bounds.size);
 
-            print(boxCollider.bounds);
+            // resizing the object for suitable size
+            BoxCollider parent_collider = hit.transform.GetComponent<BoxCollider>();
+            Vector3 boxcollider_bounds_size_scaled = Vector3.Scale(boxCollider.bounds.size, new_obj.transform.lossyScale);
+            Vector3 parentcollider_bounds_size_scaled = Vector3.Scale(parent_collider.bounds.size, new_obj.transform.lossyScale);
+            while(Mathf.Max(boxcollider_bounds_size_scaled.x, boxcollider_bounds_size_scaled.y, boxcollider_bounds_size_scaled.z) * 5 > Mathf.Max(parentcollider_bounds_size_scaled.x, parentcollider_bounds_size_scaled.y, parentcollider_bounds_size_scaled.z)){
+                new_obj.transform.localScale = new_obj.transform.localScale / 2;
+                boxcollider_bounds_size_scaled = Vector3.Scale(boxCollider.bounds.size, new_obj.transform.lossyScale);
+                parentcollider_bounds_size_scaled = Vector3.Scale(parent_collider.bounds.size, parent_collider.transform.lossyScale);
+            }
 
-            var bounds = boxCollider.bounds;
-            var x = bounds.size.x * new_obj.transform.lossyScale.x;
-            var y = bounds.size.y * new_obj.transform.lossyScale.y;
-            var z = bounds.size.z * new_obj.transform.lossyScale.z;
+            Vector3 boxcollider_size_scaled = Vector3.Scale(boxCollider.size, new_obj.transform.lossyScale);
+            Vector3 boxcollider_center_scaled = Vector3.Scale(boxCollider.center, new_obj.transform.lossyScale);
+            informationHolder.setInitSize(boxcollider_size_scaled);
 
-            Vector3 spawnPosition = hit.point;
+            print(new_obj.transform.position);
+            print(new_obj.transform.localPosition);
+            print(boxCollider.bounds.center);
+            print(boxCollider.center);
+
+            // new_obj.transform.localPosition = new Vector3(-boxcollider_center_scaled.x, -boxcollider_center_scaled.y, -boxcollider_center_scaled.z);
+
+            print(new_obj.GetComponent<InformationHolder>().getStaticAxis());
+            print(new_obj.transform.localPosition.y - boxcollider_center_scaled.y);
+
+            // switch(new_obj.GetComponent<InformationHolder>().getStaticAxis()){
+            //     case 0:
+            //         new_obj.transform.localPosition =  new Vector3((new_obj.transform.localPosition.x - boxcollider_center_scaled.x) + boxcollider_size_scaled.x / 2, new_obj.transform.localPosition.y, new_obj.transform.localPosition.z);
+            //         break;
+            //     case 1:
+            //         new_obj.transform.localPosition =  new Vector3(new_obj.transform.localPosition.x, (new_obj.transform.localPosition.y - boxcollider_center_scaled.y) + boxcollider_size_scaled.y / 2, new_obj.transform.localPosition.z);
+            //         break;
+            //     case 2:
+            //         new_obj.transform.localPosition =  new Vector3(new_obj.transform.localPosition.x, new_obj.transform.localPosition.y, (new_obj.transform.localPosition.z - boxcollider_center_scaled.z) + boxcollider_size_scaled.z / 2);
+            //         break;
+            // }
+
+
+            // new_obj.transform.localPosition -= Vector3.Scale(boxcollider_center_scaled, informationHolder.getStaticAxisVector()); 
+
+            // new_obj.transform.localPosition -= boxcollider_center_scaled;
+
+            new_obj.transform.localPosition -= boxcollider_center_scaled;
+            // new_obj.transform.localPosition += boxcollider_size_scaled / 2;
+
+            // new_obj.transform.localPosition -= Vector3.Scale(boxcollider_center_scaled, informationHolder.getStaticAxisVector());
+            new_obj.transform.localPosition += Vector3.Scale(boxcollider_size_scaled / 2, informationHolder.getStaticAxisVector());
+            
+            // boxCollider.center += boxcollider_center_scaled;
+            // boxCollider.center -= Vector3.Scale(boxcollider_size_scaled / 2, informationHolder.getStaticAxisVector());
+
+            // boxCollider.center.Set(boxCollider.center.x-new_obj.transform.localPosition.x, boxCollider.center.y-new_obj.transform.localPosition.y, boxCollider.center.z-new_obj.transform.localPosition.z);
+
             Quaternion spawnRotation = Quaternion.FromToRotation(transform.up, hit.normal) * Quaternion.identity;
-            new_obj.transform.position = spawnPosition + Vector3.Scale(new Vector3(x, y, z), hit.normal) / 2;
             new_obj.transform.rotation = spawnRotation;
 
-            
-            //         }
-            //     }, enableCache);
-            // }, enableCache);
         }
       
     }
@@ -146,15 +200,30 @@ public class RaySpawn : MonoBehaviour
         bool hasBounds = false;
         Bounds bounds = new Bounds(Vector3.zero, Vector3.zero);
 
-        bounds = ColliderFitToChildrenSub(bounds, rootGameObject, hasBounds);
+        bounds.center = rootGameObject.transform.position;
+
+        ColliderFitToChildrenSub(ref bounds, rootGameObject, ref hasBounds);
 
         BoxCollider collider = rootGameObject.GetComponent<BoxCollider>();
-        collider.center = bounds.center - rootGameObject.transform.position;
-        collider.size = bounds.size;
 
+        // collider.center = bounds.center - rootGameObject.transform.position;
+
+        Vector3 final_size = new Vector3(0, 0, 0);
+
+        final_size = bounds.size;
+        // collider.size = Vector3.Scale(final_size, rootGameObject.transform.lossyScale);
+        collider.size = final_size;
+
+        print(bounds.center);
+        print(rootGameObject.transform.InverseTransformDirection(bounds.center));
+        print(rootGameObject.transform.InverseTransformPoint(bounds.center));
+        print(rootGameObject.transform.InverseTransformVector(bounds.center));
+
+        collider.center = rootGameObject.transform.InverseTransformPoint(bounds.center);
     }
 
-    private Bounds ColliderFitToChildrenSub(Bounds bounds, GameObject child, bool hasBounds){
+    private void ColliderFitToChildrenSub(ref Bounds bounds, GameObject child, ref bool hasBounds){
+        print(child.name);
         Renderer renderer = child.transform.GetComponent<Renderer>();
         if (renderer != null) {
             if (hasBounds) {
@@ -167,24 +236,7 @@ public class RaySpawn : MonoBehaviour
         }
         for (int i = 0; i < child.transform.childCount; ++i) {
             Renderer childRenderer = child.transform.GetChild(i).GetComponent<Renderer>();
-            if (childRenderer != null) {
-                if (hasBounds) {
-                    bounds.Encapsulate(childRenderer.bounds);
-                }
-                else {
-                    bounds = childRenderer.bounds;
-                    hasBounds = true;
-                }
-            }
-            bounds = ColliderFitToChildrenSub(bounds, child.transform.GetChild(i).gameObject, hasBounds);
+            ColliderFitToChildrenSub(ref bounds, child.transform.GetChild(i).gameObject, ref hasBounds);
         }
-
-        return bounds;
     }
-
-
-
-
-
-
 }

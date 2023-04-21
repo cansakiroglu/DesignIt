@@ -101,27 +101,49 @@ namespace Oculus.Interaction
             _activeScale = _initialScale * scalePercentage;
 
             // Scale constraints
-            _activeScale = Mathf.Max(0.2f, _activeScale);
-            _activeScale = Mathf.Min(10f, _activeScale);
+            _activeScale = Mathf.Max(_initialScale / 3, _activeScale);
+            _activeScale = Mathf.Min(_initialScale * 3, _activeScale);
+
+
+
+            // Bring back the bbox alignment
+            BoxCollider boxCollider = targetTransform.GetComponent<BoxCollider>();
+            Vector3 boxcollider_size_scaled = Vector3.Scale(boxCollider.size, targetTransform.lossyScale);
+            Vector3 boxcollider_center_scaled = Vector3.Scale(boxCollider.center, targetTransform.lossyScale);
+            targetTransform.localPosition -= Vector3.Scale(boxcollider_size_scaled / 2, gameObject.GetComponent<InformationHolder>().getStaticAxisVector());
+            targetTransform.localPosition += boxcollider_center_scaled;
 
             targetTransform.localScale = _activeScale * Vector3.one;
 
+            // Repeat the bbox alignment
 
-            Vector3 currentSize = targetTransform.parent.InverseTransformDirection(targetTransform.GetComponent<BoxCollider>().bounds.size);
-            Vector3 currentSizeAbs = new Vector3(Mathf.Abs(currentSize.x), Mathf.Abs(currentSize.y), Mathf.Abs(currentSize.z));
-            Vector3 localSizeAbs = new Vector3(currentSizeAbs.x / targetTransform.parent.lossyScale.x, currentSizeAbs.y / targetTransform.parent.lossyScale.y, currentSizeAbs.z / targetTransform.parent.lossyScale.z);
+            boxcollider_size_scaled = Vector3.Scale(boxCollider.size, targetTransform.lossyScale);
+            boxcollider_center_scaled = Vector3.Scale(boxCollider.center, targetTransform.lossyScale);
+            targetTransform.localPosition -= boxcollider_center_scaled;
+            targetTransform.localPosition += Vector3.Scale(boxcollider_size_scaled / 2, gameObject.GetComponent<InformationHolder>().getStaticAxisVector());
 
-            switch(gameObject.GetComponent<InformationHolder>().getStaticAxis()){
-                case 0:
-                    targetTransform.localPosition =  new Vector3(localSizeAbs.x / 2, targetTransform.localPosition.y, targetTransform.localPosition.z);
-                    break;
-                case 1:
-                    targetTransform.localPosition =  new Vector3(targetTransform.localPosition.x, localSizeAbs.y / 2, targetTransform.localPosition.z);
-                    break;
-                case 2:
-                    targetTransform.localPosition =  new Vector3(targetTransform.localPosition.x, targetTransform.localPosition.y, localSizeAbs.z / 2);
-                    break;
-            }
+
+
+
+            // Vector3 currentSize = targetTransform.parent.InverseTransformDirection(targetTransform.GetComponent<BoxCollider>().bounds.size);
+            // Vector3 currentSizeAbs = new Vector3(Mathf.Abs(currentSize.x), Mathf.Abs(currentSize.y), Mathf.Abs(currentSize.z));
+            // Vector3 localSizeAbs = new Vector3(currentSizeAbs.x / targetTransform.parent.lossyScale.x, currentSizeAbs.y / targetTransform.parent.lossyScale.y, currentSizeAbs.z / targetTransform.parent.lossyScale.z);
+
+            // switch(gameObject.GetComponent<InformationHolder>().getStaticAxis()){
+            //     case 0:
+            //         targetTransform.localPosition =  new Vector3(localSizeAbs.x / 2, targetTransform.localPosition.y, targetTransform.localPosition.z);
+            //         break;
+            //     case 1:
+            //         targetTransform.localPosition =  new Vector3(targetTransform.localPosition.x, localSizeAbs.y / 2, targetTransform.localPosition.z);
+            //         break;
+            //     case 2:
+            //         targetTransform.localPosition =  new Vector3(targetTransform.localPosition.x, targetTransform.localPosition.y, localSizeAbs.z / 2);
+            //         break;
+            // }
+
+            // targetTransform.localPosition -= Vector3.Scale(targetTransform.localPosition, gameObject.GetComponent<InformationHolder>().getStaticAxisVector());
+
+
 
             _previousGrabA = grabA;
             _previousGrabB = grabB;

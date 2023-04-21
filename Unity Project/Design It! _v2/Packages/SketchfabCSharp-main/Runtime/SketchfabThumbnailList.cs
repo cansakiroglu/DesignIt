@@ -18,21 +18,21 @@ public class SketchfabThumbnailList
         return thumbnailsString;
     }
 
-    public SketchfabThumbnail ClosestThumbnailToSizeWithoutGoingBelow(int _witdth, int _height)
+    public SketchfabThumbnail ClosestThumbnailToSizeWithoutGoingBelow(int _width, int _height)
     {
         int diff = int.MaxValue;
         SketchfabThumbnail resultThumbnail = new SketchfabThumbnail();
         foreach (SketchfabThumbnail thumbnail in Thumbnails)
         {
-            if (thumbnail.Width < _witdth ||
+            if (thumbnail.Width < _width ||
                 thumbnail.Height < _height)
             {
                 continue;
             }
 
-            if (thumbnail.Width - _witdth < diff)
+            if (thumbnail.Width - _width < diff)
             {
-                diff = thumbnail.Width - _witdth;
+                diff = thumbnail.Width - _width;
                 resultThumbnail = thumbnail;
             }
 

@@ -12,27 +12,33 @@ public class BoundingBoxHandler : MonoBehaviour
         if (boundingBox != null) {
             boundingBox.SetActive(true);
         } else {
-            Bounds objectBounds = selectedObject.GetComponent<Collider>().bounds;
-
+            // Bounds objectBounds = selectedObject.GetComponent<Collider>().bounds;
+            BoxCollider objectCollider = selectedObject.GetComponent<BoxCollider>();
             // creating a new game object for the bounding box and setting its material
             GameObject boundingBox = Instantiate(Resources.Load("BoundingBox")) as GameObject;
-            boundingBox.transform.position = objectBounds.center;
-            boundingBox.transform.rotation = selectedObject.transform.rotation;
+            // boundingBox.transform.position = objectBounds.center;
+            boundingBox.transform.position = objectCollider.center;
+            // boundingBox.transform.rotation = selectedObject.transform.rotation;
 
+            Vector3 initsize = selectedObject.GetComponent<InformationHolder>().getInitSize();
+            Vector3 parentscale = selectedObject.transform.lossyScale;
             // using mesh bounds to get proper AABB
-            boundingBox.transform.localScale = selectedObject.GetComponent<InformationHolder>().getInitSize() + new Vector3(0.002f, 0.002f, 0.002f);
+            boundingBox.transform.localScale = new Vector3(initsize.x / parentscale.x, initsize.y / parentscale.y, initsize.z / parentscale.z) + new Vector3(0.002f, 0.002f, 0.002f);
 
-            boundingBox.transform.SetParent(selectedObject.transform, true);
+            boundingBox.transform.SetParent(selectedObject.transform, false);
 
             this.boundingBox = boundingBox;
         }
     }
 
+    public void Start()
+    {
+        // ShowBoundingBox();
+    }
+
     public void Update()
     {
-        // TODO this is a placeholder delete function, it will be relocated properly
-
-        if (OVRInput.Get(OVRInput.Button.One)){
+        if (OVRInput.Get(OVRInput.Button.Two) && boundingBox.activeSelf){
             Destroy(gameObject);
         }
     }
@@ -43,6 +49,11 @@ public class BoundingBoxHandler : MonoBehaviour
         if (boundingBox != null) {
             boundingBox.SetActive(false);
         }
+    }
+
+    public GameObject getBoundingBox()
+    {
+        return boundingBox;
     }
 
     public void setSelectedObject(GameObject gameObject){
