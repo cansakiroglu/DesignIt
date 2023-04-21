@@ -84,7 +84,7 @@ public class RaySpawn : MonoBehaviour
             GameObject new_obj = Instantiate(objectToSpawn, hit.point, Quaternion.identity);
             // new_obj.transform.rotation = Quaternion.FromToRotation(transform.up, hit.normal) * Quaternion.identity;
             
-            new_obj.SetActive(true);
+            new_obj.SetActive(false);
             new_obj.transform.SetParent(hit.transform, true);
 
             BoxCollider boxCollider = new_obj.AddComponent<BoxCollider>();
@@ -94,8 +94,8 @@ public class RaySpawn : MonoBehaviour
             Oculus.Interaction.OneGrabRotateTransformer oneGrabRotateTransformer = new_obj.AddComponent<Oculus.Interaction.OneGrabRotateTransformer>();
             Oculus.Interaction.CustomTwoGrabPlaneTransformer twoGrabPlaneTransformer = new_obj.AddComponent<Oculus.Interaction.CustomTwoGrabPlaneTransformer>();
             Oculus.Interaction.Surfaces.ColliderSurface colliderSurface = new_obj.AddComponent<Oculus.Interaction.Surfaces.ColliderSurface>();
-            Oculus.Interaction.RayInteractable rayInteractable = new_obj.AddComponent<Oculus.Interaction.RayInteractable>();    
-            Oculus.Interaction.GrabInteractable grabInteractable = new_obj.AddComponent<Oculus.Interaction.GrabInteractable>();
+            Oculus.Interaction.RayInteractable rayInteractable = new_obj.AddComponent<Oculus.Interaction.RayInteractable>();
+            Oculus.Interaction.GrabInteractable grabInteractable = new_obj.AddComponent<Oculus.Interaction.GrabInteractable>(); // some initialization errors
             Oculus.Interaction.InteractableUnityEventWrapper interactableUnityEventWrapper = new_obj.AddComponent<Oculus.Interaction.InteractableUnityEventWrapper>();
             InformationHolder informationHolder = new_obj.AddComponent<InformationHolder>();
             BoundingBoxHandler boundingBoxHandler = new_obj.AddComponent<BoundingBoxHandler>();
@@ -123,6 +123,7 @@ public class RaySpawn : MonoBehaviour
             grabInteractable.InjectRigidbody(rigidbody);
             grabInteractable.InjectPointableElement(grabbable);
 
+            new_obj.SetActive(true);
 
             Vector3 hitSurfaceNormal = hit.transform.InverseTransformDirection(hit.normal);
 

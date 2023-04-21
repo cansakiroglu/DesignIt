@@ -22,6 +22,7 @@ using UnityEngine;
 
 namespace Oculus.Interaction
 {
+    [RequireComponent(typeof(Rigidbody))]
     public class GrabInteractable : PointerInteractable<GrabInteractor, GrabInteractable>,
                                       IRigidbodyRef, ICollidersRef
     {
@@ -89,25 +90,27 @@ namespace Oculus.Interaction
         }
         #endregion
 
-        protected bool _initialized = false;
-        protected override void OnEnable()
-        {
-            if (_initialized){
-                base.OnEnable();
-            }
-        }
+        // protected bool _initialized = false;
+        // protected override void OnEnable()
+        // {
+        //     if (_initialized){
+        //         base.OnEnable();
+        //     }
+        // }
 
-        protected override void OnDisable()
-        {
-            if (_initialized){
-                base.OnDisable();
-            }
-        }
+        // protected override void OnDisable()
+        // {
+        //     if (_initialized){
+        //         base.OnDisable();
+        //     }
+        // }
 
-        public void Initialize(){
-            _initialized = true;
-            OnEnable();
-        }
+        // public void Initialize(){
+        //     _initialized = true;
+        //     OnEnable();
+        //     Awake();
+        //     Start();
+        // }
 
 
 
