@@ -124,6 +124,8 @@ public class SketchfabVoiceController : MonoBehaviour
             else
             {
                 appVoiceExperience.Deactivate();
+                // overlayCanvas.SetActive(false);
+                // is_this_task = false;
             }
         }
     }

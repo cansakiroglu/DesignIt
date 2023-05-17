@@ -52,6 +52,7 @@ namespace Oculus.Interaction
 
         private Int32 staticAxis;
 
+        private Vector3 delta;
         private Vector3 deltaScaled;
         private IGrabbable _grabbable;
 
@@ -103,7 +104,7 @@ namespace Oculus.Interaction
             _grabOffsetInLocalSpace = targetTransform.InverseTransformVector(
                     grabPoint.position - targetTransform.position);
                     
-            Vector3 delta = new Vector3(0.01f, 0.01f, 0.01f);
+            delta = new Vector3(0.01f, 0.01f, 0.01f);
             deltaScaled = new Vector3(delta.x / targetTransform.lossyScale.x, delta.y / targetTransform.lossyScale.y, delta.z / targetTransform.lossyScale.z);
         }
 
@@ -163,7 +164,7 @@ namespace Oculus.Interaction
             // NOTE : there may be need to transform delta axis  
             // Collider[] colliders = Physics.OverlapBox(constrainedPosition, GetComponent<Collider>().bounds.size / 2f + deltaScaled, gameObject.transform.rotation);
             GameObject boundingBox = targetTransform.GetComponent<BoundingBoxHandler>().getBoundingBox();
-            Collider[] colliders = Physics.OverlapBox(boundingBox.transform.position, boundingBox.transform.lossyScale / 2f + deltaScaled, boundingBox.transform.rotation);
+            Collider[] colliders = Physics.OverlapBox(boundingBox.transform.position, boundingBox.transform.lossyScale / 2f + delta, boundingBox.transform.rotation);
             bool hasBase = false;
             foreach(Collider collider in colliders){
                 if(collider.gameObject == gameObject){

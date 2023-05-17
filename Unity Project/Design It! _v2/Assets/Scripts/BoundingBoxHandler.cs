@@ -23,7 +23,8 @@ public class BoundingBoxHandler : MonoBehaviour
             Vector3 initsize = selectedObject.GetComponent<InformationHolder>().getInitSize();
             Vector3 parentscale = selectedObject.transform.lossyScale;
             // using mesh bounds to get proper AABB
-            boundingBox.transform.localScale = new Vector3(initsize.x / parentscale.x, initsize.y / parentscale.y, initsize.z / parentscale.z) + new Vector3(0.002f, 0.002f, 0.002f);
+            boundingBox.transform.localScale = new Vector3(initsize.x / parentscale.x, initsize.y / parentscale.y, initsize.z / parentscale.z);
+            boundingBox.transform.localScale += boundingBox.transform.localScale * 0.1f;
 
             boundingBox.transform.SetParent(selectedObject.transform, false);
 

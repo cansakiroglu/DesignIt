@@ -79,6 +79,7 @@ public static class SketchfabAPI
         }
 
         UnityWebRequest uwr = UnityWebRequestSketchfabModel.GetModel(_modelUID);
+        // uwr.timeout = 30;
         SketchfabWebRequestManager.Instance.SendRequest(uwr, (UnityWebRequest _request) =>
         {
             SketchfabResponse<SketchfabModel> response = DownloadHandlerSketchfabModel.GetModel(uwr);

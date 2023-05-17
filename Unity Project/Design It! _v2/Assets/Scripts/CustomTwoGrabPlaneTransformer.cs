@@ -110,17 +110,29 @@ namespace Oculus.Interaction
             BoxCollider boxCollider = targetTransform.GetComponent<BoxCollider>();
             Vector3 boxcollider_size_scaled = Vector3.Scale(boxCollider.size, targetTransform.lossyScale);
             Vector3 boxcollider_center_scaled = Vector3.Scale(boxCollider.center, targetTransform.lossyScale);
-            targetTransform.localPosition -= Vector3.Scale(boxcollider_size_scaled / 2, gameObject.GetComponent<InformationHolder>().getStaticAxisVector());
-            targetTransform.localPosition += boxcollider_center_scaled;
+            Vector3 boxcollider_center_scaled_local = targetTransform.parent.InverseTransformDirection(boxcollider_center_scaled);
+            Vector3 boxcollider_size_scaled_local = targetTransform.parent.InverseTransformDirection(boxcollider_size_scaled);
+            Vector3 boxcollider_center_scaled_local_abs = new Vector3(Mathf.Abs(boxcollider_center_scaled_local.x), Mathf.Abs(boxcollider_center_scaled_local.y), Mathf.Abs(boxcollider_center_scaled_local.z));
+            Vector3 boxcollider_size_scaled_local_abs = new Vector3(Mathf.Abs(boxcollider_size_scaled_local.x), Mathf.Abs(boxcollider_size_scaled_local.y), Mathf.Abs(boxcollider_size_scaled_local.z));
+
+            targetTransform.localPosition -= Vector3.Scale(boxcollider_size_scaled_local_abs / 2, gameObject.GetComponent<InformationHolder>().getStaticAxisVector());
+            targetTransform.localPosition += Vector3.Scale(boxcollider_center_scaled_local_abs, gameObject.GetComponent<InformationHolder>().getStaticAxisVector());
 
             targetTransform.localScale = _activeScale * Vector3.one;
 
+            print(gameObject.GetComponent<InformationHolder>().getStaticAxisVector());
             // Repeat the bbox alignment
 
             boxcollider_size_scaled = Vector3.Scale(boxCollider.size, targetTransform.lossyScale);
             boxcollider_center_scaled = Vector3.Scale(boxCollider.center, targetTransform.lossyScale);
-            targetTransform.localPosition -= boxcollider_center_scaled;
-            targetTransform.localPosition += Vector3.Scale(boxcollider_size_scaled / 2, gameObject.GetComponent<InformationHolder>().getStaticAxisVector());
+            boxcollider_center_scaled_local = targetTransform.parent.InverseTransformDirection(boxcollider_center_scaled);
+            boxcollider_size_scaled_local = targetTransform.parent.InverseTransformDirection(boxcollider_size_scaled);
+            boxcollider_center_scaled_local_abs = new Vector3(Mathf.Abs(boxcollider_center_scaled_local.x), Mathf.Abs(boxcollider_center_scaled_local.y), Mathf.Abs(boxcollider_center_scaled_local.z));
+            boxcollider_size_scaled_local_abs = new Vector3(Mathf.Abs(boxcollider_size_scaled_local.x), Mathf.Abs(boxcollider_size_scaled_local.y), Mathf.Abs(boxcollider_size_scaled_local.z));
+
+            targetTransform.localPosition -= Vector3.Scale(targetTransform.localPosition, gameObject.GetComponent<InformationHolder>().getStaticAxisVector());
+            targetTransform.localPosition -=  Vector3.Scale(boxcollider_center_scaled_local_abs, gameObject.GetComponent<InformationHolder>().getStaticAxisVector());
+            targetTransform.localPosition += Vector3.Scale(boxcollider_size_scaled_local_abs / 2, gameObject.GetComponent<InformationHolder>().getStaticAxisVector());
 
 
 

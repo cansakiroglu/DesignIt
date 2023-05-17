@@ -177,13 +177,18 @@ public class RaySpawn : MonoBehaviour
             // new_obj.transform.localPosition -= Vector3.Scale(boxcollider_center_scaled, informationHolder.getStaticAxisVector()); 
 
             // new_obj.transform.localPosition -= boxcollider_center_scaled;
-
-            new_obj.transform.localPosition -= boxcollider_center_scaled;
+            Vector3 center_local = hit.transform.InverseTransformDirection(boxcollider_center_scaled);
+            new_obj.transform.localPosition -= Vector3.Scale(new Vector3(Mathf.Abs(center_local.x), Mathf.Abs(center_local.y), Mathf.Abs(center_local.z)), informationHolder.getStaticAxisVector());
             // new_obj.transform.localPosition += boxcollider_size_scaled / 2;
 
             // new_obj.transform.localPosition -= Vector3.Scale(boxcollider_center_scaled, informationHolder.getStaticAxisVector());
-            new_obj.transform.localPosition += Vector3.Scale(boxcollider_size_scaled / 2, informationHolder.getStaticAxisVector());
+            Vector3 boxcollider_size_scaled_local = hit.transform.InverseTransformDirection(boxcollider_size_scaled);
+            new_obj.transform.localPosition += Vector3.Scale(new Vector3(Mathf.Abs(boxcollider_size_scaled_local.x), Mathf.Abs(boxcollider_size_scaled_local.y), Mathf.Abs(boxcollider_size_scaled_local.z)) / 2, informationHolder.getStaticAxisVector());
+            // new_obj.transform.localPosition = new Vector3(new_obj.transform.localPosition.x, new_obj.transform.localPosition.y, 0);
             
+            // print(new_obj.transform.localPosition);
+
+
             // boxCollider.center += boxcollider_center_scaled;
             // boxCollider.center -= Vector3.Scale(boxcollider_size_scaled / 2, informationHolder.getStaticAxisVector());
 

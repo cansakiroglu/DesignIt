@@ -3,7 +3,7 @@ import os
 import time
 from detect import detect
 
-device_ip = "192.168.137.74"
+device_ip = "192.168.137.15"
 local_path = "C:\\Users\\Murat\\Desktop\\github\\DesignIt\\ObjectDetection\\yolov7\\screenshot.png"
 
 dictionary = {

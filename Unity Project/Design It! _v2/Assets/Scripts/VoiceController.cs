@@ -100,6 +100,7 @@ namespace Oculus.Voice
         // Listen start
         private void OnListenStart()
         {
+            
             SRTextArea.text = "Listening...";
         }
         // Listen stop

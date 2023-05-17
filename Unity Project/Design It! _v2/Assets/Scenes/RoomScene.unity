@@ -2985,7 +2985,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7192818547680544906, guid: f39a9d103c4129b42a53567f6cd8356a, type: 3}
       propertyPath: isInsightPassthroughEnabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7192818547691311414, guid: f39a9d103c4129b42a53567f6cd8356a, type: 3}
       propertyPath: m_IsActive

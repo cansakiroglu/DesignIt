@@ -119,6 +119,7 @@ public class RayObjectDetector : MonoBehaviour
 
         if (isXPressed && waitFrame == 0){
             SetActivation(true);
+            overlayCanvas.SetActive(true);
             text.SetText("Listening");
         }
 

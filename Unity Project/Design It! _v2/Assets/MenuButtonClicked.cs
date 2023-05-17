@@ -55,7 +55,7 @@ public class MenuButtonClicked : MonoBehaviour
 
     void DownloadModel(string _uid, Oculus.Interaction.ToggleDeselect toggle){
           // This first call will get the model information
-            bool enableCache = true;
+            bool enableCache = false;
             SketchfabAPI.AuthorizeWithAPIToken("0d0c5741ed93477986ae00986540961b");
 
             SketchfabAPI.GetModel(_uid, (resp) =>
