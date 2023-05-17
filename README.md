@@ -23,6 +23,6 @@ Here are some highlighted works:
  
 [![](https://markdown-videos.deta.dev/youtube/z3r2sJhHzYY)](https://youtu.be/z3r2sJhHzYY)
 
- 7. Tricky YOLOv7 usage with wireless ADB trick
+ 7. Tricky YOLOv7 usage with wireless ADB
 
 [![](https://markdown-videos.deta.dev/youtube/9JzOiWiPwtA)](https://youtu.be/9JzOiWiPwtA)
