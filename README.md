@@ -10,19 +10,19 @@ Here are some highlighted works:
 
  1. Oculus Scene features that allows user to transfer information to application about the room
 
-[![](https://markdown-videos.deta.dev/youtube/oCRdU84Z7CY)](https://youtu.be/oCRdU84Z7CY)
+[![](https://img.youtube.com/vi/oCRdU84Z7CY/maxresdefault.jpg)](https://www.youtube.com/watch?v=oCRdU84Z7CY)
 
  2. Auth0 Authentication
 
-[![](https://markdown-videos.deta.dev/youtube/wq7ua-gUp2c)](https://youtu.be/wq7ua-gUp2c)
+[![](https://img.youtube.com/vi/wq7ua-gUp2c/maxresdefault.jpg)](https://www.youtube.com/watch?v=wq7ua-gUp2c)
 
  3. Using wit.ai services for voice recognition
  4. Using huggingface.co services for hosting NLP models
  5. Using sketchfab.com API's for runtime loading 3D models
  6. Custom object manipulating scripts
  
-[![](https://markdown-videos.deta.dev/youtube/z3r2sJhHzYY)](https://youtu.be/z3r2sJhHzYY)
+[![](https://img.youtube.com/vi/z3r2sJhHzYY/maxresdefault.jpg)](https://www.youtube.com/watch?v=z3r2sJhHzYY)
 
  7. Tricky YOLOv7 usage with wireless ADB
 
-[![](https://markdown-videos.deta.dev/youtube/9JzOiWiPwtA)](https://youtu.be/9JzOiWiPwtA)
+[![](https://img.youtube.com/vi/9JzOiWiPwtA/maxresdefault.jpg)](https://www.youtube.com/watch?v=9JzOiWiPwtA)
